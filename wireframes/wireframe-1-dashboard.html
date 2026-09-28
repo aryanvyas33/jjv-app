@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wireframe 1: Jeev Jantu Vihar (Bhopal) Operations Dashboard</title>
+  <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+  <style>
+    :root {
+      --background: #0f172a;
+      --card: #1e293b;
+      --border: #334155;
+      --foreground: #f8fafc;
+      --muted-foreground: #94a3b8;
+    }
+    body { background-color: var(--background); color: var(--foreground); }
+  </style>
+</head>
+<body class="p-6 max-w-7xl mx-auto space-y-6">
+
+  <div class="flex items-center justify-between border-b border-[var(--border)] pb-4">
+    <div>
+      <span class="text-xs font-bold text-emerald-400 uppercase tracking-wider">Wireframe 1 • Jeev Jantu Vihar (Bhopal)</span>
+      <h1 class="text-2xl font-bold">Animal Sanctuary Operations & Stock Dashboard</h1>
+      <p class="text-sm text-[var(--muted-foreground)]">Daily feed runway (Broken rice / Dalia), Indian veterinary pharma, and local Bhopal supplier ledger</p>
+    </div>
+    <div class="flex space-x-2">
+      <a href="index.html" class="px-3 py-1.5 rounded-lg bg-sky-600 text-white text-xs font-semibold">← Master Prototype</a>
+      <a href="wireframe-mobile-app.html" target="_blank" class="px-3 py-1.5 rounded-lg bg-emerald-600 text-white text-xs font-semibold">📱 Open Mobile App</a>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+    <div class="bg-[var(--card)] p-4 rounded-xl border border-[var(--border)]">
+      <span class="text-xs text-[var(--muted-foreground)]">Shelter Food Runway (राशन)</span>
+      <div class="text-2xl font-black mt-1 text-emerald-400">18 Days (1,150 kg)</div>
+      <p class="text-xs text-[var(--muted-foreground)] mt-2">Broken Rice (550kg) + Dalia + Drools</p>
+    </div>
+    <div class="bg-[var(--card)] p-4 rounded-xl border border-[var(--border)]">
+      <span class="text-xs text-[var(--muted-foreground)]">Clinic Vault (औषधि)</span>
+      <div class="text-2xl font-black mt-1">142 SKUs</div>
+      <p class="text-xs text-rose-400 mt-2">⚠️ Nobivac Rabies: only 4 doses left</p>
+    </div>
+    <div class="bg-[var(--card)] p-4 rounded-xl border border-[var(--border)]">
+      <span class="text-xs text-[var(--muted-foreground)]">Monthly Inflow (Purchased vs 80G)</span>
+      <div class="text-2xl font-black mt-1">₹3,48,500 Total</div>
+      <p class="text-xs text-sky-400 mt-2">₹1,82,000 Purchased • ₹1,66,500 Aid</p>
+    </div>
+    <div class="bg-[var(--card)] p-4 rounded-xl border border-[var(--border)]">
+      <span class="text-xs text-[var(--muted-foreground)]">Bhopal Bill Pipeline</span>
+      <div class="text-2xl font-black mt-1 text-amber-400">4 Bills Pending</div>
+      <p class="text-xs text-[var(--muted-foreground)] mt-2">Karond Mandi, MP Nagar Vet Care</p>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+    <div class="bg-[var(--card)] p-4 rounded-xl border border-[var(--border)] space-y-3">
+      <h3 class="font-bold text-sm text-rose-400">🚨 Expiry & Reorder Watch (Bhopal Clinic)</h3>
+      <div class="p-3 bg-rose-500/10 border border-rose-500/20 rounded-lg text-xs space-y-1">
+        <div class="font-bold text-rose-300">Nobivac Rabies (10-Dose Multi-Vial)</div>
+        <p class="text-[11px] text-[var(--muted-foreground)]">Critical low in Fridge #1 (3°C). Order from Bhopal Vet Care.</p>
+      </div>
+      <div class="p-3 bg-amber-500/10 border border-amber-500/20 rounded-lg text-xs space-y-1">
+        <div class="font-bold text-amber-300">Melonex Vet 100ml (Intas)</div>
+        <p class="text-[11px] text-[var(--muted-foreground)]">Expires in 12 days. Lot #MX-9021 in Clinic Ward.</p>
+      </div>
+      <div class="p-3 bg-sky-500/10 border border-sky-500/20 rounded-lg text-xs space-y-1">
+        <div class="font-bold text-sky-300">Broken Rice (Tukda Chawal)</div>
+        <p class="text-[11px] text-[var(--muted-foreground)]">Karond Mandi auto delivery scheduled for Thursday.</p>
+      </div>
+    </div>
+
+    <div class="lg:col-span-2 bg-[var(--card)] p-4 rounded-xl border border-[var(--border)] space-y-3">
+      <h3 class="font-bold text-sm">Recent Transactions (Bhopal Accounts)</h3>
+      <table class="w-full text-xs text-left">
+        <thead>
+          <tr class="border-b border-[var(--border)] text-[var(--muted-foreground)]">
+            <th class="pb-2">Vendor / Donor</th>
+            <th class="pb-2">Type</th>
+            <th class="pb-2">Amount (₹)</th>
+            <th class="pb-2">Funding</th>
+            <th class="pb-2">Status</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-[var(--border)]">
+          <tr>
+            <td class="py-2.5 font-bold">Bhopal Vet Care & Pharma</td>
+            <td><span class="px-2 py-0.5 rounded bg-purple-500/20 text-purple-300">Medicine</span></td>
+            <td>₹18,450.00</td>
+            <td class="text-emerald-400">BHEL Bhopal CSR</td>
+            <td><span class="text-emerald-400">Verified ✓</span></td>
+          </tr>
+          <tr>
+            <td class="py-2.5 font-bold">Karond Mandi Grain Traders</td>
+            <td><span class="px-2 py-0.5 rounded bg-amber-500/20 text-amber-300">Food / Grain</span></td>
+            <td>₹24,500.00</td>
+            <td class="text-sky-400">JJV General Pool</td>
+            <td><span class="text-amber-400">Pending OCR Review</span></td>
+          </tr>
+          <tr>
+            <td class="py-2.5 font-bold">Smt. Anita Sharma, Arera Colony</td>
+            <td><span class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300">80G In-Kind</span></td>
+            <td class="text-emerald-400">Est. ₹12,800.00</td>
+            <td>4x Drools 15kg</td>
+            <td><span class="text-emerald-400">80G Issued ✓</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</body>
+</html>

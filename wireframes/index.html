@@ -1,0 +1,1156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jeev Jantu Vihar (Bhopal) - Vendor, Asset & Invoice Management Wireframes</title>
+  <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+  <style>
+    :root {
+      --background: #0f172a;
+      --card: #1e293b;
+      --card-hover: #334155;
+      --border: #334155;
+      --foreground: #f8fafc;
+      --muted-foreground: #94a3b8;
+      --primary: #0ea5e9;
+      --primary-foreground: #ffffff;
+      --accent: #10b981;
+      --warning: #f59e0b;
+      --danger: #ef4444;
+      --purple: #8b5cf6;
+    }
+    .light {
+      --background: #f8fafc;
+      --card: #ffffff;
+      --card-hover: #f1f5f9;
+      --border: #e2e8f0;
+      --foreground: #0f172a;
+      --muted-foreground: #64748b;
+      --primary: #0284c7;
+      --primary-foreground: #ffffff;
+      --accent: #059669;
+      --warning: #d97706;
+      --danger: #dc2626;
+      --purple: #7c3aed;
+    }
+    body {
+      background-color: var(--background);
+      color: var(--foreground);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    }
+    .bbox-highlight {
+      outline: 2px dashed #0ea5e9;
+      background-color: rgba(14, 165, 233, 0.15);
+      transition: all 0.2s ease;
+    }
+    .bbox-highlight:hover, .bbox-active {
+      outline: 2px solid #38bdf8;
+      background-color: rgba(56, 189, 248, 0.35);
+    }
+  </style>
+</head>
+<body class="min-h-screen antialiased flex flex-col">
+
+  <!-- Top Global Shelter App Navigation -->
+  <header class="border-b border-[var(--border)] bg-[var(--card)] px-6 py-3 sticky top-0 z-50">
+    <div class="flex items-center justify-between">
+      <div class="flex items-center space-x-3">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-amber-500 via-sky-500 to-emerald-500 flex items-center justify-center text-white font-bold text-xl shadow-lg">
+          🐾
+        </div>
+        <div>
+          <div class="flex items-center space-x-2">
+            <h1 class="font-bold text-lg tracking-tight text-[var(--foreground)]">Jeev Jantu Vihar (जीव जंतु विहार)</h1>
+            <span class="text-xs px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 font-medium border border-emerald-500/30">Bhopal, MP</span>
+          </div>
+          <p class="text-xs text-[var(--muted-foreground)]">Animal Rescue Sanctuary & Clinic • Registration: MP/BPL/2018/80G</p>
+        </div>
+      </div>
+
+      <!-- Wireframe Switcher Tabs Including Mobile View -->
+      <div class="flex items-center bg-[var(--background)] p-1 rounded-xl border border-[var(--border)]">
+        <button onclick="switchView('dashboard')" id="tab-dashboard" class="tab-btn px-3 py-1.5 text-xs font-medium rounded-lg transition bg-[var(--primary)] text-white shadow-sm">
+          1. Operations Dashboard
+        </button>
+        <button onclick="switchView('invoice-ocr')" id="tab-invoice-ocr" class="tab-btn px-3 py-1.5 text-xs font-medium rounded-lg transition text-[var(--muted-foreground)] hover:text-[var(--foreground)]">
+          2. Bhopal Bill OCR Studio
+        </button>
+        <button onclick="switchView('vendors')" id="tab-vendors" class="tab-btn px-3 py-1.5 text-xs font-medium rounded-lg transition text-[var(--muted-foreground)] hover:text-[var(--foreground)]">
+          3. Bhopal Vendors & GST
+        </button>
+        <button onclick="switchView('inventory')" id="tab-inventory" class="tab-btn px-3 py-1.5 text-xs font-medium rounded-lg transition text-[var(--muted-foreground)] hover:text-[var(--foreground)]">
+          4. Stock & Assets (₹)
+        </button>
+        <button onclick="switchView('donations')" id="tab-donations" class="tab-btn px-3 py-1.5 text-xs font-medium rounded-lg transition text-[var(--muted-foreground)] hover:text-[var(--foreground)]">
+          5. 80G & In-Kind Aid
+        </button>
+        <a href="wireframe-mobile-app.html" target="_blank" class="px-3 py-1.5 text-xs font-bold rounded-lg transition bg-gradient-to-r from-emerald-600 to-teal-600 text-white shadow-sm flex items-center space-x-1 ml-1 hover:opacity-90">
+          <span>📱</span>
+          <span>Open Mobile App View ↗</span>
+        </a>
+      </div>
+
+      <!-- Header Utilities -->
+      <div class="flex items-center space-x-3">
+        <button onclick="toggleTheme()" class="px-2.5 py-1.5 rounded-lg border border-[var(--border)] text-xs text-[var(--muted-foreground)] hover:text-[var(--foreground)]">
+          🌓 Theme
+        </button>
+        <div class="flex items-center space-x-2 pl-3 border-l border-[var(--border)]">
+          <div class="w-8 h-8 rounded-full bg-emerald-600/30 border border-emerald-400/40 flex items-center justify-center text-xs font-bold text-emerald-400">
+            DR
+          </div>
+          <div class="text-xs">
+            <p class="font-medium text-[var(--foreground)]">Dr. R. K. Sharma</p>
+            <p class="text-[10px] text-[var(--muted-foreground)]">Chief Vet & Admin, Bhopal</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Localized Notice Banner -->
+  <div class="bg-amber-500/10 border-b border-amber-500/20 px-6 py-2 text-xs text-amber-300 flex items-center justify-between">
+    <div class="flex items-center space-x-2">
+      <span class="font-bold uppercase tracking-wider text-[10px] px-1.5 py-0.5 rounded bg-amber-500/30 text-amber-200">Bhopal Shelter Edition</span>
+      <span>Customized for Indian Shelter Operations: INR (₹), GST Invoices, Karond Mandi Rations, 80G Tax Receipts & Caretaker Mobile Companion App.</span>
+    </div>
+    <span class="text-[11px] text-amber-400 font-semibold">जीव जंतु विहार • पशु कल्याण संस्थान</span>
+  </div>
+
+  <!-- MAIN VIEWPORT CONTAINER -->
+  <main class="flex-1 p-6 max-w-7xl mx-auto w-full">
+
+    <!-- ========================================================================= -->
+    <!-- VIEW 1: DASHBOARD (LOCALIZED BHOPAL) -->
+    <!-- ========================================================================= -->
+    <div id="view-dashboard" class="view-panel space-y-6">
+      
+      <!-- Top Action Bar -->
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div>
+          <h2 class="text-2xl font-bold tracking-tight text-[var(--foreground)]">Jeev Jantu Vihar - Operations & Stock Command</h2>
+          <p class="text-sm text-[var(--muted-foreground)]">Live management for 182 sheltered rescue dogs, cats, injured cattle & birds at Bhopal Sanctuary</p>
+        </div>
+        <div class="flex items-center space-x-2">
+          <button onclick="switchView('invoice-ocr')" class="px-3.5 py-2 rounded-xl bg-[var(--primary)] text-white text-xs font-semibold shadow hover:opacity-90 flex items-center space-x-2">
+            <span>📷</span>
+            <span>Upload Bhopal Bill Image</span>
+          </button>
+          <button onclick="switchView('donations')" class="px-3.5 py-2 rounded-xl bg-emerald-600 text-white text-xs font-semibold shadow hover:opacity-90 flex items-center space-x-2">
+            <span>🎁</span>
+            <span>Record 80G / In-Kind Aid</span>
+          </button>
+          <a href="wireframe-mobile-app.html" target="_blank" class="px-3.5 py-2 rounded-xl border border-[var(--border)] bg-[var(--card)] text-xs font-semibold hover:bg-[var(--card-hover)] flex items-center space-x-1.5 text-sky-400">
+            <span>📱</span>
+            <span>Caretaker Phone App</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- KPI Summary Cards in INR (₹) -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        
+        <!-- Food Runway -->
+        <div class="bg-[var(--card)] p-4 rounded-xl border border-[var(--border)] shadow-sm">
+          <div class="flex items-center justify-between text-xs text-[var(--muted-foreground)]">
+            <span>Shelter Food Runway (राशन स्टॉक)</span>
+            <span class="text-emerald-400 font-semibold">18 Days Left</span>
+          </div>
+          <div class="mt-2 flex items-baseline space-x-2">
+            <span class="text-3xl font-extrabold text-[var(--foreground)]">1,150 kg</span>
+            <span class="text-xs text-[var(--muted-foreground)]">65kg cooked/day</span>
+          </div>
+          <div class="mt-3 w-full bg-[var(--background)] h-2 rounded-full overflow-hidden flex">
+            <div class="bg-amber-500 h-full" style="width: 50%" title="Tukda Chawal (Broken Rice 50%)"></div>
+            <div class="bg-sky-500 h-full" style="width: 30%" title="Drools/Pedigree Kibble (30%)"></div>
+            <div class="bg-rose-500 h-full" style="width: 20%" title="Wheat Dalia & Chicken (20%)"></div>
+          </div>
+          <div class="mt-2 text-[11px] flex justify-between text-[var(--muted-foreground)]">
+            <span class="text-emerald-400">Broken Rice: 550kg (Healthy)</span>
+            <span class="text-rose-400">⚠️ Puppy Milk: 3 days left</span>
+          </div>
+        </div>
+
+        <!-- Veterinary Medicine -->
+        <div class="bg-[var(--card)] p-4 rounded-xl border border-[var(--border)] shadow-sm">
+          <div class="flex items-center justify-between text-xs text-[var(--muted-foreground)]">
+            <span>Veterinary Clinic Vault (औषधि)</span>
+            <span class="text-rose-400 font-semibold bg-rose-500/10 px-1.5 py-0.5 rounded">Action Required</span>
+          </div>
+          <div class="mt-2 flex items-baseline space-x-2">
+            <span class="text-3xl font-extrabold text-[var(--foreground)]">142 SKUs</span>
+            <span class="text-xs text-[var(--muted-foreground)]">active items</span>
+          </div>
+          <div class="mt-3 text-xs space-y-1">
+            <div class="flex justify-between text-[11px]">
+              <span class="text-amber-400">Expiring in 30 days:</span>
+              <span class="font-bold">Melonex Vet, Taxim-AZ</span>
+            </div>
+            <div class="flex justify-between text-[11px]">
+              <span class="text-rose-400">Critical Cold Chain:</span>
+              <span class="font-bold">Nobivac Rabies (4 doses left)</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Monthly Inflow in INR (₹) -->
+        <div class="bg-[var(--card)] p-4 rounded-xl border border-[var(--border)] shadow-sm">
+          <div class="flex items-center justify-between text-xs text-[var(--muted-foreground)]">
+            <span>Monthly Inflow (Sep 2026)</span>
+            <span class="text-sky-400 text-[10px]">Net Value</span>
+          </div>
+          <div class="mt-2 flex items-baseline space-x-2">
+            <span class="text-3xl font-extrabold text-[var(--foreground)]">₹3,48,500</span>
+          </div>
+          <div class="mt-3 grid grid-cols-2 gap-2 text-[11px]">
+            <div class="bg-[var(--background)] p-1.5 rounded-lg border border-[var(--border)]">
+              <span class="text-[var(--muted-foreground)] block">Purchased Invoices:</span>
+              <span class="font-bold text-sky-400">₹1,82,000 (GST)</span>
+            </div>
+            <div class="bg-[var(--background)] p-1.5 rounded-lg border border-[var(--border)]">
+              <span class="text-[var(--muted-foreground)] block">80G / In-Kind Aid:</span>
+              <span class="font-bold text-emerald-400">₹1,66,500</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pending Invoices / Slips -->
+        <div class="bg-[var(--card)] p-4 rounded-xl border border-[var(--border)] shadow-sm">
+          <div class="flex items-center justify-between text-xs text-[var(--muted-foreground)]">
+            <span>Bhopal Receipt Pipeline</span>
+            <span class="text-purple-400 font-semibold">Gemini Vision OCR</span>
+          </div>
+          <div class="mt-2 flex items-baseline space-x-2">
+            <span class="text-3xl font-extrabold text-[var(--foreground)]">4 Bills</span>
+            <span class="text-xs text-amber-400">Pending Review</span>
+          </div>
+          <p class="mt-2 text-[11px] text-[var(--muted-foreground)]">Mandi grain slip, Bhopal Vet Care challan & Hamidia Rd surgical bill.</p>
+          <button onclick="switchView('invoice-ocr')" class="mt-2 w-full text-center py-1.5 rounded-lg bg-purple-500/20 hover:bg-purple-500/30 text-purple-300 font-medium text-xs border border-purple-500/30 transition">
+            Review Pending Receipts (समीक्षा करें) →
+          </button>
+        </div>
+
+      </div>
+
+      <!-- Split Section: Critical Watchlist & Recent Invoices -->
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        
+        <!-- Left: Watchlist -->
+        <div class="bg-[var(--card)] rounded-xl border border-[var(--border)] p-4 shadow-sm space-y-4">
+          <div class="flex items-center justify-between border-b border-[var(--border)] pb-3">
+            <div class="flex items-center space-x-2">
+              <span class="text-base">🚨</span>
+              <h3 class="font-semibold text-sm text-[var(--foreground)]">Critical Stock & Expiry Watch</h3>
+            </div>
+            <span class="text-[10px] bg-rose-500/20 text-rose-300 px-2 py-0.5 rounded-full">FEFO Rule Active</span>
+          </div>
+
+          <div class="space-y-2.5">
+            <!-- Alert 1 -->
+            <div class="p-3 rounded-xl bg-rose-500/10 border border-rose-500/20 space-y-1">
+              <div class="flex items-center justify-between">
+                <span class="text-xs font-bold text-rose-300">Nobivac Rabies (10-Dose Vial)</span>
+                <span class="text-[10px] font-bold px-1.5 py-0.2 rounded bg-rose-500/30 text-rose-200">Only 4 Doses Left</span>
+              </div>
+              <p class="text-[11px] text-[var(--muted-foreground)]">Clinic Fridge #1 (3.2°C). Bhopal stray rescue intake requires immediate batch order.</p>
+            </div>
+
+            <!-- Alert 2 -->
+            <div class="p-3 rounded-xl bg-amber-500/10 border border-amber-500/20 space-y-1">
+              <div class="flex items-center justify-between">
+                <span class="text-xs font-bold text-amber-300">Melonex Vet 100ml (Intas)</span>
+                <span class="text-[10px] font-bold px-1.5 py-0.2 rounded bg-amber-500/30 text-amber-200">Expires in 12 Days</span>
+              </div>
+              <p class="text-[11px] text-[var(--muted-foreground)]">Batch #MX-9021 • 8 bottles in Clinic Ward. Prioritize for post-op surgery cases.</p>
+            </div>
+
+            <!-- Alert 3 -->
+            <div class="p-3 rounded-xl bg-sky-500/10 border border-sky-500/20 space-y-1">
+              <div class="flex items-center justify-between">
+                <span class="text-xs font-bold text-sky-300">Broken Rice (Tukda Chawal)</span>
+                <span class="text-[10px] font-bold px-1.5 py-0.2 rounded bg-sky-500/30 text-sky-200">Reorder at Karond Mandi</span>
+              </div>
+              <p class="text-[11px] text-[var(--muted-foreground)]">Current stock: 11 bags (550kg). Order 20 more bags for winter food drive.</p>
+            </div>
+
+            <!-- Alert 4 -->
+            <div class="p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/20 space-y-1">
+              <div class="flex items-center justify-between">
+                <span class="text-xs font-bold text-emerald-300">D-Mag & Topicure Maggot Spray</span>
+                <span class="text-[10px] font-bold px-1.5 py-0.2 rounded bg-emerald-500/30 text-emerald-200">High Monsoon Burn</span>
+              </div>
+              <p class="text-[11px] text-[var(--muted-foreground)]">Street rescue dog cases high this week. 18 cans remaining.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Recent Invoices & Aid Feed -->
+        <div class="lg:col-span-2 bg-[var(--card)] rounded-xl border border-[var(--border)] p-4 shadow-sm flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between border-b border-[var(--border)] pb-3">
+              <div>
+                <h3 class="font-semibold text-sm text-[var(--foreground)]">Recent Bhopal Invoices & Aid Ingestion Log</h3>
+                <p class="text-xs text-[var(--muted-foreground)]">Latest image bills, 80G donor contributions, and vendor challans</p>
+              </div>
+            </div>
+
+            <div class="mt-4 overflow-x-auto">
+              <table class="w-full text-left text-xs">
+                <thead>
+                  <tr class="text-[var(--muted-foreground)] border-b border-[var(--border)]">
+                    <th class="pb-2 font-medium">Vendor / Source</th>
+                    <th class="pb-2 font-medium">Category</th>
+                    <th class="pb-2 font-medium">Date</th>
+                    <th class="pb-2 font-medium">Amount (₹)</th>
+                    <th class="pb-2 font-medium">Funding / Sponsor</th>
+                    <th class="pb-2 font-medium">Status</th>
+                    <th class="pb-2 font-medium text-right">Action</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-[var(--border)]">
+                  <tr class="hover:bg-[var(--card-hover)] transition">
+                    <td class="py-2.5 font-medium flex items-center space-x-2">
+                      <span class="p-1 rounded bg-purple-500/20 text-purple-400">💊</span>
+                      <div>
+                        <span class="text-[var(--foreground)] block font-semibold">Bhopal Vet Care & Pharma</span>
+                        <span class="text-[10px] text-[var(--muted-foreground)]">GST: 23AABCV1294F1Z4</span>
+                      </div>
+                    </td>
+                    <td class="py-2.5">
+                      <span class="px-2 py-0.5 rounded-full text-[10px] bg-purple-500/20 text-purple-300 font-medium">Medicine</span>
+                    </td>
+                    <td class="py-2.5 text-[var(--muted-foreground)]">18-Sep-2026</td>
+                    <td class="py-2.5 font-semibold text-[var(--foreground)]">₹18,450.00</td>
+                    <td class="py-2.5">
+                      <span class="text-[10px] text-emerald-400 font-medium">BHEL Bhopal CSR Grant</span>
+                    </td>
+                    <td class="py-2.5">
+                      <span class="px-2 py-0.5 rounded-full text-[10px] bg-emerald-500/20 text-emerald-300">Verified & Stocked</span>
+                    </td>
+                    <td class="py-2.5 text-right">
+                      <button onclick="switchView('invoice-ocr')" class="text-xs text-sky-400 hover:underline">View OCR</button>
+                    </td>
+                  </tr>
+
+                  <tr class="hover:bg-[var(--card-hover)] transition">
+                    <td class="py-2.5 font-medium flex items-center space-x-2">
+                      <span class="p-1 rounded bg-amber-500/20 text-amber-400">🌾</span>
+                      <div>
+                        <span class="text-[var(--foreground)] block font-semibold">Karond Mandi Grain Traders</span>
+                        <span class="text-[10px] text-[var(--muted-foreground)]">Mandi Slip #KM-4029</span>
+                      </div>
+                    </td>
+                    <td class="py-2.5">
+                      <span class="px-2 py-0.5 rounded-full text-[10px] bg-amber-500/20 text-amber-300 font-medium">Food / Grain</span>
+                    </td>
+                    <td class="py-2.5 text-[var(--muted-foreground)]">20-Sep-2026</td>
+                    <td class="py-2.5 font-semibold text-[var(--foreground)]">₹24,500.00</td>
+                    <td class="py-2.5">
+                      <span class="text-[10px] text-sky-400">Jeev Jantu Vihar Main Pool</span>
+                    </td>
+                    <td class="py-2.5">
+                      <span class="px-2 py-0.5 rounded-full text-[10px] bg-amber-500/20 text-amber-300 animate-pulse">Needs Review</span>
+                    </td>
+                    <td class="py-2.5 text-right">
+                      <button onclick="switchView('invoice-ocr')" class="text-xs bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded hover:bg-amber-500/30">Verify Bill</button>
+                    </td>
+                  </tr>
+
+                  <tr class="hover:bg-[var(--card-hover)] transition">
+                    <td class="py-2.5 font-medium flex items-center space-x-2">
+                      <span class="p-1 rounded bg-emerald-500/20 text-emerald-400">🎁</span>
+                      <div>
+                        <span class="text-[var(--foreground)] block font-semibold">Smt. Anita Sharma, Arera Colony</span>
+                        <span class="text-[10px] text-[var(--muted-foreground)]">80G Receipt: JJV/80G/2026/88</span>
+                      </div>
+                    </td>
+                    <td class="py-2.5">
+                      <span class="px-2 py-0.5 rounded-full text-[10px] bg-emerald-500/20 text-emerald-300 font-medium">In-Kind Aid</span>
+                    </td>
+                    <td class="py-2.5 text-[var(--muted-foreground)]">21-Sep-2026</td>
+                    <td class="py-2.5 font-semibold text-emerald-400">Est. ₹12,800.00</td>
+                    <td class="py-2.5">
+                      <span class="text-[10px] text-[var(--muted-foreground)]">4x Drools 15kg + 10 Blankets</span>
+                    </td>
+                    <td class="py-2.5">
+                      <span class="px-2 py-0.5 rounded-full text-[10px] bg-emerald-500/20 text-emerald-300">80G Certificate Issued</span>
+                    </td>
+                    <td class="py-2.5 text-right">
+                      <button onclick="switchView('donations')" class="text-xs text-sky-400 hover:underline">WhatsApp PDF</button>
+                    </td>
+                  </tr>
+
+                  <tr class="hover:bg-[var(--card-hover)] transition">
+                    <td class="py-2.5 font-medium flex items-center space-x-2">
+                      <span class="p-1 rounded bg-sky-500/20 text-sky-400">🏥</span>
+                      <div>
+                        <span class="text-[var(--foreground)] block font-semibold">Narmada Surgical & Cage Works</span>
+                        <span class="text-[10px] text-[var(--muted-foreground)]">Hamidia Road, Bhopal</span>
+                      </div>
+                    </td>
+                    <td class="py-2.5">
+                      <span class="px-2 py-0.5 rounded-full text-[10px] bg-sky-500/20 text-sky-300 font-medium">Shelter Asset</span>
+                    </td>
+                    <td class="py-2.5 text-[var(--muted-foreground)]">15-Sep-2026</td>
+                    <td class="py-2.5 font-semibold text-[var(--foreground)]">₹42,000.00</td>
+                    <td class="py-2.5">
+                      <span class="text-[10px] text-purple-400">MP State Animal Board Aid</span>
+                    </td>
+                    <td class="py-2.5">
+                      <span class="px-2 py-0.5 rounded-full text-[10px] bg-emerald-500/20 text-emerald-300">Tagged: #JJV-OT-04</span>
+                    </td>
+                    <td class="py-2.5 text-right">
+                      <button onclick="switchView('inventory')" class="text-xs text-sky-400 hover:underline">View Asset</button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="mt-4 pt-3 border-t border-[var(--border)] flex items-center justify-between text-xs text-[var(--muted-foreground)]">
+            <span>Showing recent 4 of 58 transactions recorded at Bhopal Sanctuary</span>
+            <div class="space-x-2">
+              <button onclick="switchView('vendors')" class="text-sky-400 hover:underline">Manage All Bhopal Vendors →</button>
+              <span>•</span>
+              <button onclick="switchView('donations')" class="text-emerald-400 hover:underline">80G Donation Register →</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- VIEW 2: BHOPAL BILL OCR STUDIO (WITH INTERACTIVE IMAGE SYNC) -->
+    <!-- ========================================================================= -->
+    <div id="view-invoice-ocr" class="view-panel hidden space-y-4">
+      
+      <!-- Studio Header Bar -->
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-[var(--card)] p-4 rounded-xl border border-[var(--border)]">
+        <div>
+          <div class="flex items-center space-x-2">
+            <span class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 text-xs font-bold uppercase">Multimodal OCR (Bhopal Invoice)</span>
+            <span class="text-xs text-[var(--muted-foreground)]">• File: <code class="text-sky-300 font-mono">bill_bhopal_vet_pharma_8841.jpg</code></span>
+          </div>
+          <h2 class="text-lg font-bold text-[var(--foreground)] mt-0.5">Jeev Jantu Vihar - Bill Verification & Inventory Sync Studio</h2>
+        </div>
+        <div class="flex items-center space-x-2">
+          <a href="wireframe-mobile-app.html" target="_blank" class="px-3 py-1.5 rounded-lg border border-[var(--border)] text-xs text-sky-400 hover:bg-[var(--card-hover)] flex items-center space-x-1">
+            <span>📷</span>
+            <span>Retake on Phone</span>
+          </a>
+          <button onclick="alert('Successfully verified! 4 items added to Jeev Jantu Vihar Pharmacy Vault and allocated to BHEL Bhopal CSR Grant.')" class="px-3.5 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-xs shadow flex items-center space-x-1.5">
+            <span>✓</span>
+            <span>Approve & Sync to Stock (₹)</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Split Screen: 50% Image Viewer / 50% Parsed Form -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-4">
+        
+        <!-- LEFT: Scanned Indian Invoice Viewer (5 cols) -->
+        <div class="lg:col-span-5 bg-[var(--card)] rounded-xl border border-[var(--border)] p-3 flex flex-col h-[750px]">
+          
+          <div class="flex items-center justify-between pb-2 border-b border-[var(--border)] text-xs">
+            <span class="text-[var(--muted-foreground)] font-medium">Scanned Tax Invoice (Bhopal)</span>
+            <div class="flex items-center space-x-1">
+              <button class="p-1 rounded bg-[var(--background)] border border-[var(--border)]">🔍 +</button>
+              <button class="p-1 rounded bg-[var(--background)] border border-[var(--border)]">🔍 -</button>
+              <button class="p-1 rounded bg-[var(--background)] border border-[var(--border)]">⟳ 90°</button>
+              <span class="text-[10px] px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-400">GSTIN Match</span>
+            </div>
+          </div>
+
+          <!-- Realistic Indian Tax Invoice Paper Simulation -->
+          <div class="flex-1 overflow-auto bg-slate-950 rounded-lg p-3 relative mt-2 flex justify-center items-start">
+            
+            <div class="w-full max-w-sm bg-[#fffdfa] text-slate-900 p-4 rounded shadow-2xl font-mono text-[10px] leading-relaxed relative select-none border border-slate-300">
+              
+              <!-- Red Shelter Stamp -->
+              <div class="absolute top-2 right-2 border-2 border-emerald-600 text-emerald-700 uppercase font-black text-[9px] px-2 py-0.5 rotate-3 rounded">
+                JJV BHOPAL - RECEIVED
+              </div>
+
+              <!-- Header -->
+              <div id="bbox-header" class="bbox-highlight p-1 rounded mb-2">
+                <p class="font-bold text-xs tracking-wider text-slate-900">BHOPAL VET CARE & PHARMA AGENCIES</p>
+                <p class="text-[9px] text-slate-600">Plot 14, Zone-II, Maharana Pratap Nagar, Bhopal (MP) - 462011</p>
+                <p class="text-[9px] text-slate-700 font-bold">GSTIN: 23AABCV1294F1Z4 • DL No: MP/BPL/20B/4412</p>
+              </div>
+
+              <!-- Bill Meta -->
+              <div id="bbox-meta" class="bbox-highlight p-1 rounded mb-2 flex justify-between border-y border-dashed border-slate-400 py-1 text-[9px]">
+                <div>
+                  <span class="text-slate-500">Tax Invoice #:</span> <strong>BPL-2026-8841</strong><br>
+                  <span class="text-slate-500">Date:</span> <strong>18-Sep-2026</strong>
+                </div>
+                <div class="text-right">
+                  <span class="text-slate-500">Billed To:</span> <strong>Jeev Jantu Vihar</strong><br>
+                  <span class="text-slate-500">Place of Supply:</span> Madhya Pradesh (23)
+                </div>
+              </div>
+
+              <!-- Line Items -->
+              <div class="space-y-1.5">
+                <div class="font-bold border-b border-slate-400 pb-0.5 text-[8.5px] flex justify-between text-slate-600">
+                  <span class="w-1/2">ITEM / HSN / BATCH</span>
+                  <span class="w-1/6 text-center">QTY</span>
+                  <span class="w-1/6 text-right">RATE</span>
+                  <span class="w-1/6 text-right">AMOUNT</span>
+                </div>
+
+                <!-- Item 1: Melonex -->
+                <div id="bbox-item-1" onmouseenter="highlightRow('row-1')" onmouseleave="unhighlightRow('row-1')" class="bbox-highlight p-1 rounded cursor-pointer">
+                  <div class="flex justify-between font-bold">
+                    <span class="w-1/2 text-sky-900">Melonex Vet 100ml (Intas)</span>
+                    <span class="w-1/6 text-center">10 btls</span>
+                    <span class="w-1/6 text-right">240.00</span>
+                    <span class="w-1/6 text-right">2,400.00</span>
+                  </div>
+                  <div class="text-[8.5px] text-slate-600 flex space-x-2">
+                    <span>Batch: MX-9021</span>
+                    <span>Exp: 10/2027</span>
+                    <span>HSN: 3004</span>
+                  </div>
+                </div>
+
+                <!-- Item 2: Cefpet -->
+                <div id="bbox-item-2" onmouseenter="highlightRow('row-2')" onmouseleave="unhighlightRow('row-2')" class="bbox-highlight p-1 rounded cursor-pointer">
+                  <div class="flex justify-between font-bold">
+                    <span class="w-1/2 text-sky-900">Cefpet 200mg Tabs (10x10)</span>
+                    <span class="w-1/6 text-center">6 strips</span>
+                    <span class="w-1/6 text-right">310.00</span>
+                    <span class="w-1/6 text-right">1,860.00</span>
+                  </div>
+                  <div class="text-[8.5px] text-slate-600 flex space-x-2">
+                    <span>Batch: CF-440</span>
+                    <span>Exp: 08/2027</span>
+                  </div>
+                </div>
+
+                <!-- Item 3: Nobivac Rabies -->
+                <div id="bbox-item-3" onmouseenter="highlightRow('row-3')" onmouseleave="unhighlightRow('row-3')" class="bbox-highlight p-1 rounded cursor-pointer">
+                  <div class="flex justify-between font-bold">
+                    <span class="w-1/2 text-sky-900">Nobivac Rabies (10-Dose Vial)</span>
+                    <span class="w-1/6 text-center">20 vials</span>
+                    <span class="w-1/6 text-right">450.00</span>
+                    <span class="w-1/6 text-right">9,000.00</span>
+                  </div>
+                  <div class="text-[8.5px] text-slate-600 flex space-x-2">
+                    <span>Batch: NR-819</span>
+                    <span>Exp: 12/2026</span>
+                    <span class="text-rose-600 font-bold">Cold Chain 2-8°C</span>
+                  </div>
+                </div>
+
+                <!-- Item 4: D-Mag Spray -->
+                <div id="bbox-item-4" onmouseenter="highlightRow('row-4')" onmouseleave="unhighlightRow('row-4')" class="bbox-highlight p-1 rounded cursor-pointer">
+                  <div class="flex justify-between font-bold">
+                    <span class="w-1/2 text-sky-900">D-Mag Wound Maggot Spray 120ml</span>
+                    <span class="w-1/6 text-center">15 cans</span>
+                    <span class="w-1/6 text-right">180.00</span>
+                    <span class="w-1/6 text-right">2,700.00</span>
+                  </div>
+                  <div class="text-[8.5px] text-slate-600 flex space-x-2">
+                    <span>Batch: DM-112</span>
+                    <span>Exp: 05/2028</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- GST Calculation Section -->
+              <div id="bbox-totals" class="bbox-highlight p-1 rounded mt-3 border-t border-slate-400 pt-1 text-[9px] space-y-0.5">
+                <div class="flex justify-between">
+                  <span>Taxable Subtotal:</span>
+                  <span>₹15,960.00</span>
+                </div>
+                <div class="flex justify-between text-slate-600">
+                  <span>CGST @ 6%:</span>
+                  <span>₹957.60</span>
+                </div>
+                <div class="flex justify-between text-slate-600">
+                  <span>SGST @ 6%:</span>
+                  <span>₹957.60</span>
+                </div>
+                <div class="flex justify-between">
+                  <span>Shelter Welfare NGO Discount:</span>
+                  <span class="text-emerald-700">-₹575.20</span>
+                </div>
+                <div class="flex justify-between font-bold text-xs border-t border-slate-900 pt-1 text-slate-950">
+                  <span>NET PAYABLE (INR):</span>
+                  <span>₹17,300.00</span>
+                </div>
+              </div>
+
+              <div class="mt-3 text-center text-[8.5px] text-slate-500 italic">
+                * Jeev Jantu Vihar - Dedicated to stray and rescued animals of Bhopal *
+              </div>
+            </div>
+
+          </div>
+
+          <div class="pt-2 text-[10px] text-[var(--muted-foreground)] flex justify-between">
+            <span>Hover on items above to cross-highlight data form.</span>
+            <span class="text-sky-400">Gemini 2.5 OCR Confidence: 98.2%</span>
+          </div>
+        </div>
+
+        <!-- RIGHT: Extracted Editable Structured Form (7 cols) -->
+        <div class="lg:col-span-7 bg-[var(--card)] rounded-xl border border-[var(--border)] p-4 flex flex-col h-[750px] overflow-y-auto space-y-4">
+          
+          <!-- Vendor & Invoice Metadata Editor -->
+          <div class="bg-[var(--background)] p-3 rounded-xl border border-[var(--border)] space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-[var(--foreground)] uppercase tracking-wider">Bhopal Vendor & GST Header</span>
+              <span class="text-[10px] px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 font-semibold">GSTIN Verified ✓ (MP Code 23)</span>
+            </div>
+            
+            <div class="grid grid-cols-3 gap-3 text-xs">
+              <div>
+                <label class="text-[10px] text-[var(--muted-foreground)] block">Vendor Name</label>
+                <select class="w-full mt-0.5 bg-[var(--card)] border border-[var(--border)] rounded-lg p-1.5 text-xs text-[var(--foreground)]">
+                  <option selected>Bhopal Vet Care & Pharma (MP Nagar)</option>
+                  <option>MP Pashu Aahar & Pet Foods (Govindpura)</option>
+                  <option>Karond Mandi Grain Merchants (Bhopal)</option>
+                  <option>Narmada Surgical & Cage Works (Hamidia Rd)</option>
+                </select>
+              </div>
+
+              <div>
+                <label class="text-[10px] text-[var(--muted-foreground)] block">Tax Invoice #</label>
+                <input type="text" value="BPL-2026-8841" class="w-full mt-0.5 bg-[var(--card)] border border-[var(--border)] rounded-lg p-1.5 text-xs font-mono text-[var(--foreground)]">
+              </div>
+
+              <div>
+                <label class="text-[10px] text-[var(--muted-foreground)] block">Invoice Date</label>
+                <input type="date" value="2026-09-18" class="w-full mt-0.5 bg-[var(--card)] border border-[var(--border)] rounded-lg p-1.5 text-xs text-[var(--foreground)]">
+              </div>
+            </div>
+
+            <!-- Funding & Aid Allocation Selector -->
+            <div class="pt-2 border-t border-[var(--border)] flex items-center justify-between">
+              <div class="flex items-center space-x-2">
+                <span class="text-xs text-purple-300 font-medium">💰 Funding Source:</span>
+                <select class="bg-[var(--card)] border border-purple-500/40 rounded-lg p-1 text-xs text-[var(--foreground)]">
+                  <option>BHEL Bhopal CSR Animal Welfare Grant (₹1,50,000 available)</option>
+                  <option>Jeev Jantu Vihar General Operating Account</option>
+                  <option>Rotary Club of Bhopal Emergency Medical Fund</option>
+                </select>
+              </div>
+              <span class="text-[11px] text-emerald-400 font-semibold">100% Covered: ₹17,300.00</span>
+            </div>
+          </div>
+
+          <!-- Extracted Line Items Table -->
+          <div class="space-y-2 flex-1">
+            <div class="flex items-center justify-between">
+              <div>
+                <h3 class="text-xs font-bold text-[var(--foreground)] uppercase tracking-wider">Line Items Extracted (4 Items)</h3>
+                <p class="text-[10px] text-[var(--muted-foreground)]">Mapped to Jeev Jantu Vihar Clinic Vault & Rabies Cold Chain</p>
+              </div>
+              <button class="text-xs px-2.5 py-1 rounded-lg bg-[var(--background)] border border-[var(--border)] text-sky-400 hover:text-sky-300">
+                + Add Item Manually
+              </button>
+            </div>
+
+            <!-- Items -->
+            <div class="space-y-2">
+              
+              <!-- Item 1: Melonex -->
+              <div id="row-1" onmouseenter="highlightBox('bbox-item-1')" onmouseleave="unhighlightBox('bbox-item-1')" class="p-2.5 rounded-xl bg-[var(--background)] border border-[var(--border)] hover:border-sky-500/50 transition space-y-2">
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center space-x-2">
+                    <span class="px-1.5 py-0.5 rounded text-[10px] font-bold bg-purple-500/20 text-purple-300">MEDICINE</span>
+                    <input type="text" value="Melonex Vet 100ml Injection (Intas)" class="bg-[var(--card)] text-xs font-semibold px-2 py-1 rounded border border-[var(--border)] w-72 text-[var(--foreground)]">
+                  </div>
+                  <span class="text-[10px] text-emerald-400 font-mono">Confidence: 99%</span>
+                </div>
+
+                <div class="grid grid-cols-5 gap-2 text-xs">
+                  <div>
+                    <label class="text-[10px] text-[var(--muted-foreground)]">Matched SKU</label>
+                    <input type="text" value="MED-MELONEX-100" class="w-full bg-[var(--card)] px-2 py-1 rounded border border-[var(--border)] font-mono text-[11px]">
+                  </div>
+                  <div>
+                    <label class="text-[10px] text-[var(--muted-foreground)]">Quantity & Unit</label>
+                    <input type="text" value="10 Bottles" class="w-full bg-[var(--card)] px-2 py-1 rounded border border-[var(--border)] text-[11px]">
+                  </div>
+                  <div>
+                    <label class="text-[10px] text-[var(--muted-foreground)]">Batch / Lot #</label>
+                    <input type="text" value="MX-9021" class="w-full bg-[var(--card)] px-2 py-1 rounded border border-[var(--border)] text-[11px] font-mono">
+                  </div>
+                  <div>
+                    <label class="text-[10px] text-[var(--muted-foreground)]">Expiry Date</label>
+                    <input type="date" value="2027-10-31" class="w-full bg-[var(--card)] px-2 py-1 rounded border border-[var(--border)] text-[11px]">
+                  </div>
+                  <div>
+                    <label class="text-[10px] text-[var(--muted-foreground)]">Line Total (₹)</label>
+                    <input type="text" value="₹2,400.00" class="w-full bg-[var(--card)] px-2 py-1 rounded border border-[var(--border)] text-[11px] font-bold text-sky-400">
+                  </div>
+                </div>
+                <div class="text-[10px] text-[var(--muted-foreground)] flex justify-between">
+                  <span>Storage: <strong>Clinic ICU Ward • Cabinet 1</strong></span>
+                  <span class="text-emerald-400">Stock updates: +10 bottles</span>
+                </div>
+              </div>
+
+              <!-- Item 2: Cefpet -->
+              <div id="row-2" onmouseenter="highlightBox('bbox-item-2')" onmouseleave="unhighlightBox('bbox-item-2')" class="p-2.5 rounded-xl bg-[var(--background)] border border-[var(--border)] hover:border-sky-500/50 transition space-y-2">
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center space-x-2">
+                    <span class="px-1.5 py-0.5 rounded text-[10px] font-bold bg-purple-500/20 text-purple-300">ANTIBIOTIC</span>
+                    <input type="text" value="Cefpet 200mg Tablets (10x10 strips)" class="bg-[var(--card)] text-xs font-semibold px-2 py-1 rounded border border-[var(--border)] w-72 text-[var(--foreground)]">
+                  </div>
+                  <span class="text-[10px] text-emerald-400 font-mono">Confidence: 98%</span>
+                </div>
+
+                <div class="grid grid-cols-5 gap-2 text-xs">
+                  <div>
+                    <label class="text-[10px] text-[var(--muted-foreground)]">Matched SKU</label>
+                    <input type="text" value="MED-CEFPET-200" class="w-full bg-[var(--card)] px-2 py-1 rounded border border-[var(--border)] font-mono text-[11px]">
+                  </div>
+                  <div>
+                    <label class="text-[10px] text-[var(--muted-foreground)]">Quantity & Unit</label>
+                    <input type="text" value="6 Strips (60 tabs)" class="w-full bg-[var(--card)] px-2 py-1 rounded border border-[var(--border)] text-[11px]">
+                  </div>
+                  <div>
+                    <label class="text-[10px] text-[var(--muted-foreground)]">Batch / Lot #</label>
+                    <input type="text" value="CF-440" class="w-full bg-[var(--card)] px-2 py-1 rounded border border-[var(--border)] text-[11px] font-mono">
+                  </div>
+                  <div>
+                    <label class="text-[10px] text-[var(--muted-foreground)]">Expiry Date</label>
+                    <input type="date" value="2027-08-31" class="w-full bg-[var(--card)] px-2 py-1 rounded border border-[var(--border)] text-[11px]">
+                  </div>
+                  <div>
+                    <label class="text-[10px] text-[var(--muted-foreground)]">Line Total (₹)</label>
+                    <input type="text" value="₹1,860.00" class="w-full bg-[var(--card)] px-2 py-1 rounded border border-[var(--border)] text-[11px] font-bold text-sky-400">
+                  </div>
+                </div>
+              </div>
+
+              <!-- Item 3: Nobivac Rabies -->
+              <div id="row-3" onmouseenter="highlightBox('bbox-item-3')" onmouseleave="unhighlightBox('bbox-item-3')" class="p-2.5 rounded-xl bg-[var(--background)] border border-[var(--border)] hover:border-sky-500/50 transition space-y-2">
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center space-x-2">
+                    <span class="px-1.5 py-0.5 rounded text-[10px] font-bold bg-sky-500/20 text-sky-300">COLD-CHAIN VACCINE</span>
+                    <input type="text" value="Nobivac Rabies (10-Dose Multi-Vial)" class="bg-[var(--card)] text-xs font-semibold px-2 py-1 rounded border border-[var(--border)] w-72 text-[var(--foreground)]">
+                  </div>
+                  <span class="text-[10px] text-emerald-400 font-mono">Confidence: 99%</span>
+                </div>
+
+                <div class="grid grid-cols-5 gap-2 text-xs">
+                  <div>
+                    <label class="text-[10px] text-[var(--muted-foreground)]">Matched SKU</label>
+                    <input type="text" value="MED-RAB-NOB10" class="w-full bg-[var(--card)] px-2 py-1 rounded border border-[var(--border)] font-mono text-[11px]">
+                  </div>
+                  <div>
+                    <label class="text-[10px] text-[var(--muted-foreground)]">Quantity & Unit</label>
+                    <input type="text" value="20 Vials (200 doses)" class="w-full bg-[var(--card)] px-2 py-1 rounded border border-[var(--border)] text-[11px]">
+                  </div>
+                  <div>
+                    <label class="text-[10px] text-[var(--muted-foreground)]">Batch / Lot #</label>
+                    <input type="text" value="NR-819" class="w-full bg-[var(--card)] px-2 py-1 rounded border border-[var(--border)] text-[11px] font-mono">
+                  </div>
+                  <div>
+                    <label class="text-[10px] text-[var(--muted-foreground)]">Expiry Date</label>
+                    <input type="date" value="2026-12-31" class="w-full bg-[var(--card)] px-2 py-1 rounded border border-[var(--border)] text-[11px]">
+                  </div>
+                  <div>
+                    <label class="text-[10px] text-[var(--muted-foreground)]">Line Total (₹)</label>
+                    <input type="text" value="₹9,000.00" class="w-full bg-[var(--card)] px-2 py-1 rounded border border-[var(--border)] text-[11px] font-bold text-sky-400">
+                  </div>
+                </div>
+                <div class="text-[10px] text-emerald-400 flex justify-between">
+                  <span>Destination: <strong>Biological Refrigerator #1 (2-8°C)</strong></span>
+                  <span>Solves critical low stock alert for Bhopal stray anti-rabies drive!</span>
+                </div>
+              </div>
+
+              <!-- Item 4: D-Mag Spray -->
+              <div id="row-4" onmouseenter="highlightBox('bbox-item-4')" onmouseleave="unhighlightBox('bbox-item-4')" class="p-2.5 rounded-xl bg-[var(--background)] border border-[var(--border)] hover:border-sky-500/50 transition space-y-2">
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center space-x-2">
+                    <span class="px-1.5 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300">WOUND SPRAY</span>
+                    <input type="text" value="D-Mag Wound Maggot Spray 120ml" class="bg-[var(--card)] text-xs font-semibold px-2 py-1 rounded border border-[var(--border)] w-72 text-[var(--foreground)]">
+                  </div>
+                  <span class="text-[10px] text-emerald-400 font-mono">Confidence: 97%</span>
+                </div>
+
+                <div class="grid grid-cols-5 gap-2 text-xs">
+                  <div>
+                    <label class="text-[10px] text-[var(--muted-foreground)]">Matched SKU</label>
+                    <input type="text" value="MED-DMAG-120" class="w-full bg-[var(--card)] px-2 py-1 rounded border border-[var(--border)] font-mono text-[11px]">
+                  </div>
+                  <div>
+                    <label class="text-[10px] text-[var(--muted-foreground)]">Quantity & Unit</label>
+                    <input type="text" value="15 Cans" class="w-full bg-[var(--card)] px-2 py-1 rounded border border-[var(--border)] text-[11px]">
+                  </div>
+                  <div>
+                    <label class="text-[10px] text-[var(--muted-foreground)]">Batch / Lot #</label>
+                    <input type="text" value="DM-112" class="w-full bg-[var(--card)] px-2 py-1 rounded border border-[var(--border)] text-[11px] font-mono">
+                  </div>
+                  <div>
+                    <label class="text-[10px] text-[var(--muted-foreground)]">Expiry Date</label>
+                    <input type="date" value="2028-05-31" class="w-full bg-[var(--card)] px-2 py-1 rounded border border-[var(--border)] text-[11px]">
+                  </div>
+                  <div>
+                    <label class="text-[10px] text-[var(--muted-foreground)]">Line Total (₹)</label>
+                    <input type="text" value="₹2,700.00" class="w-full bg-[var(--card)] px-2 py-1 rounded border border-[var(--border)] text-[11px] font-bold text-sky-400">
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Bottom Verification Actions & Financial Summary -->
+          <div class="bg-[var(--background)] p-3 rounded-xl border border-[var(--border)] flex items-center justify-between">
+            <div class="text-xs">
+              <span class="text-[var(--muted-foreground)]">Total Bill (with GST):</span>
+              <span class="text-base font-bold text-[var(--foreground)] ml-1">₹17,300.00</span>
+              <span class="text-[10px] text-emerald-400 ml-2">✓ Matches Scanned Paper Bill</span>
+            </div>
+            <div class="flex items-center space-x-2">
+              <button class="px-3 py-1.5 rounded-lg border border-[var(--border)] text-xs text-[var(--muted-foreground)] hover:text-[var(--foreground)]">Save Draft</button>
+              <button onclick="alert('Confirmed! Stock updated in Jeev Jantu Vihar inventory and bill linked to BHEL CSR Fund.')" class="px-4 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-xs shadow">
+                Confirm & Sync to Inventory (पुष्टि करें) ✓
+              </button>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- VIEW 3: VENDORS (BHOPAL & MP SUPPLIERS) -->
+    <!-- ========================================================================= -->
+    <div id="view-vendors" class="view-panel hidden space-y-6">
+      
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div>
+          <h2 class="text-2xl font-bold tracking-tight text-[var(--foreground)]">Bhopal Vendors & Food/Pharma Suppliers</h2>
+          <p class="text-sm text-[var(--muted-foreground)]">Managing GST compliance, MP Nagar pharma distributors, Karond mandi rations & surgical contracts</p>
+        </div>
+        <button class="px-3.5 py-2 rounded-xl bg-[var(--primary)] text-white text-xs font-semibold shadow hover:opacity-90">
+          + Add New Vendor
+        </button>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        
+        <!-- Vendor 1 -->
+        <div class="bg-[var(--card)] rounded-xl border border-[var(--border)] p-4 shadow-sm space-y-3">
+          <div class="flex items-start justify-between">
+            <div>
+              <h3 class="font-bold text-sm text-[var(--foreground)]">Bhopal Vet Care & Pharma</h3>
+              <span class="text-[10px] px-2 py-0.5 rounded-full bg-purple-500/20 text-purple-300 font-medium">MP Nagar Zone-II • Pharma</span>
+            </div>
+            <span class="text-xs font-bold text-emerald-400">Net 15</span>
+          </div>
+          <p class="text-xs text-[var(--muted-foreground)]">Intas, Vetoquinol, Virbac, Nobivac rabies vaccines, antibiotics & surgical injectables.</p>
+          <div class="bg-[var(--background)] p-2 rounded-lg text-[11px] grid grid-cols-2 gap-1.5">
+            <div><span class="text-[var(--muted-foreground)]">GSTIN:</span> <strong class="font-mono text-[10px]">23AABCV1294F1Z4</strong></div>
+            <div><span class="text-[var(--muted-foreground)]">Discount:</span> <strong class="text-emerald-400">12% NGO Rate</strong></div>
+            <div><span class="text-[var(--muted-foreground)]">Balance Due:</span> <strong class="text-[var(--foreground)]">₹18,450.00</strong></div>
+            <div><span class="text-[var(--muted-foreground)]">Delivery:</span> <strong>Same Day Bhopal</strong></div>
+          </div>
+        </div>
+
+        <!-- Vendor 2 -->
+        <div class="bg-[var(--card)] rounded-xl border border-[var(--border)] p-4 shadow-sm space-y-3">
+          <div class="flex items-start justify-between">
+            <div>
+              <h3 class="font-bold text-sm text-[var(--foreground)]">MP Pashu Aahar & Pet Nutrition</h3>
+              <span class="text-[10px] px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-300 font-medium">Govindpura Ind. Area • Food</span>
+            </div>
+            <span class="text-xs font-bold text-emerald-400">Net 30</span>
+          </div>
+          <p class="text-xs text-[var(--muted-foreground)]">Wholesale distributor for Drools Focus, Pedigree, puppy starter porridge & milk replacer.</p>
+          <div class="bg-[var(--background)] p-2 rounded-lg text-[11px] grid grid-cols-2 gap-1.5">
+            <div><span class="text-[var(--muted-foreground)]">GSTIN:</span> <strong class="font-mono text-[10px]">23AACCP5512B1Z8</strong></div>
+            <div><span class="text-[var(--muted-foreground)]">Discount:</span> <strong class="text-emerald-400">20% Wholesale</strong></div>
+            <div><span class="text-[var(--muted-foreground)]">Balance Due:</span> <strong class="text-[var(--foreground)]">₹32,000.00</strong></div>
+            <div><span class="text-[var(--muted-foreground)]">Bills on File:</span> <strong>28 Image Bills</strong></div>
+          </div>
+        </div>
+
+        <!-- Vendor 3 -->
+        <div class="bg-[var(--card)] rounded-xl border border-[var(--border)] p-4 shadow-sm space-y-3">
+          <div class="flex items-start justify-between">
+            <div>
+              <h3 class="font-bold text-sm text-[var(--foreground)]">Karond Mandi Grain & Ration</h3>
+              <span class="text-[10px] px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 font-medium">Karond Krishi Mandi • Grains</span>
+            </div>
+            <span class="text-xs font-bold text-amber-400">Weekly Cash</span>
+          </div>
+          <p class="text-xs text-[var(--muted-foreground)]">Broken rice (Tukda Chawal), Wheat Dalia & Chokar for cooking daily khichdi for 180+ animals.</p>
+          <div class="bg-[var(--background)] p-2 rounded-lg text-[11px] grid grid-cols-2 gap-1.5">
+            <div><span class="text-[var(--muted-foreground)]">Mandi Reg:</span> <strong class="font-mono text-[10px]">BPL/MND/991</strong></div>
+            <div><span class="text-[var(--muted-foreground)]">Rate/Sack:</span> <strong>₹1,250 / 50kg</strong></div>
+            <div><span class="text-[var(--muted-foreground)]">Balance Due:</span> <strong class="text-emerald-400">₹0.00 (Cleared)</strong></div>
+            <div><span class="text-[var(--muted-foreground)]">Vehicle:</span> <strong>Auto Delivery</strong></div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- VIEW 4: STOCK & ASSET INVENTORY (INR) -->
+    <!-- ========================================================================= -->
+    <div id="view-inventory" class="view-panel hidden space-y-6">
+      
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div>
+          <h2 class="text-2xl font-bold tracking-tight text-[var(--foreground)]">Jeev Jantu Vihar - Consumables & Asset Ledger</h2>
+          <p class="text-sm text-[var(--muted-foreground)]">Tracking batch numbers, expiry dates, storage bays, and source (Purchased vs Community Aid)</p>
+        </div>
+        <button class="px-3.5 py-2 rounded-xl bg-[var(--primary)] text-white text-xs font-semibold shadow hover:opacity-90">
+          + Add New Stock / Asset Item
+        </button>
+      </div>
+
+      <div class="bg-[var(--card)] rounded-xl border border-[var(--border)] overflow-hidden">
+        <table class="w-full text-left text-xs">
+          <thead>
+            <tr class="text-[var(--muted-foreground)] border-b border-[var(--border)] bg-[var(--background)]">
+              <th class="p-3 font-medium">Item & SKU Code</th>
+              <th class="p-3 font-medium">Category</th>
+              <th class="p-3 font-medium">Current Stock</th>
+              <th class="p-3 font-medium">Batch & FEFO Expiry</th>
+              <th class="p-3 font-medium">Primary Source</th>
+              <th class="p-3 font-medium">Storage Location</th>
+              <th class="p-3 font-medium text-right">Actions</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-[var(--border)]">
+            
+            <tr class="hover:bg-[var(--card-hover)] transition">
+              <td class="p-3 font-medium">
+                <span class="font-bold text-[var(--foreground)] block">Broken Rice (Tukda Chawal) 50kg Sacks</span>
+                <span class="text-[10px] text-[var(--muted-foreground)] font-mono">SKU: FOOD-RICE-50K</span>
+              </td>
+              <td class="p-3"><span class="px-2 py-0.5 rounded bg-amber-500/20 text-amber-300">Daily Grain Ration</span></td>
+              <td class="p-3 font-bold text-emerald-400">11 Sacks (550 kg)<span class="block text-[10px] text-[var(--muted-foreground)] font-normal">~8 days cooking</span></td>
+              <td class="p-3">Lot #KM-4029 • Fresh Mandi Crop</td>
+              <td class="p-3 text-sky-400">Karond Mandi (Purchased)</td>
+              <td class="p-3 text-[var(--muted-foreground)]">Bhopal Main Grain Store</td>
+              <td class="p-3 text-right"><button class="px-2 py-1 rounded bg-sky-600 text-white">Dispense</button></td>
+            </tr>
+
+            <tr class="hover:bg-[var(--card-hover)] transition">
+              <td class="p-3 font-medium">
+                <span class="font-bold text-[var(--foreground)] block">Drools Focus Adult Super Premium 15kg</span>
+                <span class="text-[10px] text-[var(--muted-foreground)] font-mono">SKU: FOOD-DROOLS-15</span>
+              </td>
+              <td class="p-3"><span class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300">Community Aid</span></td>
+              <td class="p-3 font-bold text-[var(--foreground)]">8 Bags (120 kg)<span class="block text-[10px] text-emerald-400 font-normal">Donated Asset Aid</span></td>
+              <td class="p-3">Lot #DR-8812 • Exp Nov 2027</td>
+              <td class="p-3 text-emerald-400">Arera Colony Food Drive (Aid)</td>
+              <td class="p-3 text-[var(--muted-foreground)]">Kennel Block B Pantry</td>
+              <td class="p-3 text-right"><button class="px-2 py-1 rounded bg-sky-600 text-white">Dispense</button></td>
+            </tr>
+
+            <tr class="hover:bg-[var(--card-hover)] transition bg-rose-500/5">
+              <td class="p-3 font-medium text-rose-300">
+                <span class="font-bold block">Nobivac Rabies (10-Dose Multi-Vial)</span>
+                <span class="text-[10px] text-[var(--muted-foreground)] font-mono">SKU: MED-RAB-NOB10</span>
+              </td>
+              <td class="p-3"><span class="px-2 py-0.5 rounded bg-purple-500/20 text-purple-300">Cold Chain Vaccine</span></td>
+              <td class="p-3 font-bold text-rose-400">4 Doses (CRITICAL LOW)</td>
+              <td class="p-3">Lot #NR-819 • Exp Dec 2026</td>
+              <td class="p-3 text-sky-400">Bhopal Vet Care (MP Nagar)</td>
+              <td class="p-3 text-[var(--muted-foreground)]">Clinic Biological Fridge #1 (3°C)</td>
+              <td class="p-3 text-right"><button class="px-2 py-1 rounded bg-rose-600 font-bold text-white">Reorder PO</button></td>
+            </tr>
+
+            <tr class="hover:bg-[var(--card-hover)] transition">
+              <td class="p-3 font-medium">
+                <span class="font-bold text-[var(--foreground)] block">Hydraulic Stainless Steel Veterinary OT Table</span>
+                <span class="text-[10px] text-[var(--muted-foreground)] font-mono">Asset Tag: #JJV-OT-04</span>
+              </td>
+              <td class="p-3"><span class="px-2 py-0.5 rounded bg-sky-500/20 text-sky-300">Capital Asset (OT)</span></td>
+              <td class="p-3 font-bold text-[var(--foreground)]">1 Unit (In Use)<span class="block text-[10px] text-[var(--muted-foreground)] font-normal">Valued at ₹42,000</span></td>
+              <td class="p-3">Warranty: 3 Yr Narmada Surgicals</td>
+              <td class="p-3 text-purple-400">MP State Animal Board Grant</td>
+              <td class="p-3 text-[var(--muted-foreground)]">Sterilization Surgery Room</td>
+              <td class="p-3 text-right"><button class="px-2 py-1 rounded bg-sky-600 text-white">QR Tag</button></td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- VIEW 5: 80G DONATIONS & AID MANAGEMENT -->
+    <!-- ========================================================================= -->
+    <div id="view-donations" class="view-panel hidden space-y-6">
+      
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div>
+          <h2 class="text-2xl font-bold tracking-tight text-[var(--foreground)]">Jeev Jantu Vihar - 80G & CSR Aid Management</h2>
+          <p class="text-sm text-[var(--muted-foreground)]">Issuing Form 10BE compliant 80G receipts for Bhopal citizens and matching CSR grants against vendor bills</p>
+        </div>
+        <div class="flex items-center space-x-2">
+          <button class="px-3.5 py-2 rounded-xl bg-emerald-600 text-white text-xs font-semibold shadow hover:opacity-90">
+            + Log In-Kind (Food/Blanket) Aid
+          </button>
+          <button class="px-3.5 py-2 rounded-xl bg-[var(--primary)] text-white text-xs font-semibold shadow hover:opacity-90">
+            + Issue 80G Donation Receipt
+          </button>
+        </div>
+      </div>
+
+      <!-- CSR & Grant Allocation Cards -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        
+        <div class="bg-[var(--card)] p-4 rounded-xl border border-[var(--border)] space-y-2">
+          <div class="flex justify-between items-center">
+            <span class="font-bold text-xs text-sky-400">BHEL Bhopal CSR Animal Welfare Grant</span>
+            <span class="text-xs font-bold text-emerald-400">₹2,50,000 Total Grant</span>
+          </div>
+          <p class="text-[11px] text-[var(--muted-foreground)]">Designated strictly for post-operative veterinary medicines, rabies vaccination, and surgery kits.</p>
+          <div class="bg-[var(--background)] p-2.5 rounded-lg text-xs space-y-1.5 border border-[var(--border)]">
+            <div class="flex justify-between">
+              <span>Bhopal Vet Care (Bill #8841 - Nobivac & Melonex)</span>
+              <strong class="text-emerald-400">₹17,300.00</strong>
+            </div>
+            <div class="flex justify-between">
+              <span>Narmada Surgicals (Bill #1092 - Suture & Scalpels)</span>
+              <strong class="text-emerald-400">₹14,500.00</strong>
+            </div>
+            <div class="pt-1 border-t border-[var(--border)] flex justify-between font-bold text-[11px]">
+              <span>Grant Balance Remaining:</span>
+              <span class="text-sky-400">₹2,18,200.00</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-[var(--card)] p-4 rounded-xl border border-[var(--border)] space-y-2">
+          <div class="flex justify-between items-center">
+            <span class="font-bold text-xs text-amber-400">Bhopal Citizen Winter Food Drive Fund</span>
+            <span class="text-xs font-bold text-amber-300">₹85,000 Total Pool</span>
+          </div>
+          <p class="text-[11px] text-[var(--muted-foreground)]">Crowdfunded via UPI (PhonePe/GPay) to sponsor bulk broken rice & wheat dalia rations.</p>
+          <div class="bg-[var(--background)] p-2.5 rounded-lg text-xs space-y-1.5 border border-[var(--border)]">
+            <div class="flex justify-between">
+              <span>Karond Mandi Grain (Challan #4029 - 20 Sacks Rice)</span>
+              <strong class="text-emerald-400">₹24,500.00</strong>
+            </div>
+            <div class="flex justify-between">
+              <span>MP Pashu Aahar (Bill #501 - Dalia & Milk powder)</span>
+              <strong class="text-emerald-400">₹18,000.00</strong>
+            </div>
+            <div class="pt-1 border-t border-[var(--border)] flex justify-between font-bold text-[11px]">
+              <span>Fund Balance Remaining:</span>
+              <span class="text-amber-400">₹42,500.00</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- In-Kind Donations Register -->
+      <div class="bg-[var(--card)] p-4 rounded-xl border border-[var(--border)] space-y-3">
+        <div class="flex justify-between items-center border-b border-[var(--border)] pb-2">
+          <h3 class="font-bold text-sm text-[var(--foreground)]">Recent 80G & In-Kind Community Aid Register</h3>
+          <span class="text-xs text-sky-400">WhatsApp 80G PDF Enabled</span>
+        </div>
+        
+        <table class="w-full text-left text-xs">
+          <thead>
+            <tr class="text-[var(--muted-foreground)] border-b border-[var(--border)]">
+              <th class="pb-2 font-medium">Donor Name & Contact</th>
+              <th class="pb-2 font-medium">Items / Monetary Aid</th>
+              <th class="pb-2 font-medium">Quantity</th>
+              <th class="pb-2 font-medium">Estimated Value (₹)</th>
+              <th class="pb-2 font-medium">PAN / 80G Ref</th>
+              <th class="pb-2 font-medium text-right">Tax Certificate</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-[var(--border)]">
+            <tr class="hover:bg-[var(--card-hover)]">
+              <td class="py-2.5 font-bold">
+                Smt. Anita Sharma
+                <span class="block text-[10px] text-[var(--muted-foreground)] font-normal">Arera Colony, Bhopal • +91 98260 11223</span>
+              </td>
+              <td>Drools Focus Adult 15kg + Winter Blankets</td>
+              <td class="font-bold">4 Bags + 10 Blankets</td>
+              <td class="font-bold text-emerald-400">₹12,800.00</td>
+              <td><span class="font-mono text-[10px]">AAAPS1234K</span></td>
+              <td class="text-right text-sky-400 underline cursor-pointer">WhatsApp PDF #88</td>
+            </tr>
+
+            <tr class="hover:bg-[var(--card-hover)]">
+              <td class="py-2.5 font-bold">
+                Shri Rajeev Saxena
+                <span class="block text-[10px] text-[var(--muted-foreground)] font-normal">Kolar Road, Bhopal • UPI PhonePe</span>
+              </td>
+              <td>Medical Emergency Treatment Fund (Parvo Pups)</td>
+              <td class="font-bold">Direct UPI Transfer</td>
+              <td class="font-bold text-emerald-400">₹15,000.00</td>
+              <td><span class="font-mono text-[10px]">BPLPS4419M</span></td>
+              <td class="text-right text-sky-400 underline cursor-pointer">WhatsApp PDF #89</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+
+  </main>
+
+  <script>
+    function switchView(viewName) {
+      document.querySelectorAll('.view-panel').forEach(panel => panel.classList.add('hidden'));
+      const target = document.getElementById('view-' + viewName);
+      if (target) target.classList.remove('hidden');
+
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.remove('bg-[var(--primary)]', 'text-white', 'shadow-sm');
+        btn.classList.add('text-[var(--muted-foreground)]');
+      });
+
+      const activeBtn = document.getElementById('tab-' + viewName);
+      if (activeBtn) {
+        activeBtn.classList.remove('text-[var(--muted-foreground)]');
+        activeBtn.classList.add('bg-[var(--primary)]', 'text-white', 'shadow-sm');
+      }
+    }
+
+    function highlightRow(rowId) {
+      const row = document.getElementById(rowId);
+      if (row) row.classList.add('border-sky-400', 'bg-sky-500/10');
+    }
+
+    function unhighlightRow(rowId) {
+      const row = document.getElementById(rowId);
+      if (row) row.classList.remove('border-sky-400', 'bg-sky-500/10');
+    }
+
+    function highlightBox(boxId) {
+      const box = document.getElementById(boxId);
+      if (box) box.classList.add('bbox-active');
+    }
+
+    function unhighlightBox(boxId) {
+      const box = document.getElementById(boxId);
+      if (box) box.classList.remove('bbox-active');
+    }
+
+    function toggleTheme() {
+      document.documentElement.classList.toggle('light');
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+{
+  "expo": {
+    "name": "Jeev Jantu Vihar",
+    "slug": "jjv-bhopal-companion",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "dark",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#141110"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "infoPlist": {
+        "NSCameraUsageDescription": "Allow Jeev Jantu Vihar Companion to use the camera to take rescue photos of animals.",
+        "NSPhotoLibraryUsageDescription": "Allow Jeev Jantu Vihar Companion to access photos to upload rescue documentation."
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#141110"
+      },
+      "package": "org.jjv.bhopal.companion",
+      "permissions": [
+        "android.permission.CAMERA",
+        "android.permission.READ_EXTERNAL_STORAGE",
+        "android.permission.WRITE_EXTERNAL_STORAGE",
+        "android.permission.READ_MEDIA_IMAGES"
+      ]
+    },
+    "plugins": [
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "Allow Jeev Jantu Vihar Companion to access your photos to upload rescue documentation.",
+          "cameraPermission": "Allow Jeev Jantu Vihar Companion to access your camera to capture rescue photos."
+        }
+      ]
+    ],
+    "web": {
+      "favicon": "./assets/favicon.png"
+    }
+  }
+}

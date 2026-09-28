@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JJV Animal Census Dashboard</title>
+  <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+  <style>
+    :root {
+      --background: #141110;
+      --card: #1e1b19;
+      --border: #332e2b;
+      --foreground: #ede8e3;
+      --muted-foreground: #8f8580;
+    }
+    body { 
+      background-color: var(--background); 
+      color: var(--foreground); 
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+    .card-bg { background-color: var(--card); }
+    .border-color { border-color: var(--border); }
+    .text-muted { color: var(--muted-foreground); }
+  </style>
+</head>
+<body class="p-6 md:p-10 min-h-screen">
+  
+  <div class="max-w-7xl mx-auto space-y-8">
+    
+    <!-- Header -->
+    <header class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b border-color pb-6">
+      <div class="space-y-2">
+        <span class="inline-block px-3 py-1 bg-[rgba(194,122,102,0.15)] text-[#c27a66] rounded-full text-xs font-semibold tracking-wide uppercase">
+          Phase 1 &bull; Animal Profiles
+        </span>
+        <h1 class="text-2xl md:text-3xl font-bold">Jeev Jantu Vihar — Animal Census Dashboard</h1>
+        <p class="text-muted text-sm md:text-base">Count, profiles, rescue records, and recovery tracking for Dogs & Cows</p>
+      </div>
+      <div class="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
+        <a href="index.html" class="px-4 py-2 card-bg border border-color rounded-lg hover:bg-[#262220] transition-colors text-sm font-medium flex items-center justify-center whitespace-nowrap">
+          &larr; Master Prototype
+        </a>
+        <a href="wireframe-phase1-mobile.html" class="px-4 py-2 card-bg border border-color rounded-lg hover:bg-[#262220] transition-colors text-sm font-medium flex items-center justify-center text-[#6b94b8] whitespace-nowrap">
+          📱 Mobile App
+        </a>
+      </div>
+    </header>
+
+    <!-- Stats Row -->
+    <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      
+      <div class="card-bg border border-color rounded-xl p-6 flex flex-col items-center text-center">
+        <div class="text-5xl font-bold text-[#c27a66] mb-2">47</div>
+        <div class="font-medium text-lg">Total Dogs</div>
+        <div class="text-sm text-muted mt-1">🐕 In Shelter Care</div>
+      </div>
+      
+      <div class="card-bg border border-color rounded-xl p-6 flex flex-col items-center text-center">
+        <div class="text-5xl font-bold text-[#6b94b8] mb-2">23</div>
+        <div class="font-medium text-lg">Total Cows</div>
+        <div class="text-sm text-muted mt-1">🐄 In Gaushala Section</div>
+      </div>
+      
+      <div class="card-bg border border-color rounded-xl p-6 flex flex-col items-center text-center">
+        <div class="text-5xl font-bold text-[#c9a355] mb-2">12</div>
+        <div class="font-medium text-lg">Under Treatment</div>
+        <div class="text-sm text-muted mt-1">🏥 Active cases (Dogs: 8, Cows: 4)</div>
+      </div>
+      
+      <div class="card-bg border border-color rounded-xl p-6 flex flex-col items-center text-center">
+        <div class="text-5xl font-bold text-[#c27a66] mb-2">34</div>
+        <div class="font-medium text-lg">Fully Recovered</div>
+        <div class="text-sm text-muted mt-1">✅ This Quarter (Dogs: 22, Cows: 12)</div>
+      </div>
+
+    </section>
+
+    <!-- Main Content -->
+    <section class="grid grid-cols-1 xl:grid-cols-2 gap-8">
+      
+      <!-- Left Column: Dogs -->
+      <div class="space-y-6">
+        <div class="flex justify-between items-center">
+          <h2 class="text-xl font-bold flex items-center gap-2">🐕 Recent Dog Rescues</h2>
+          <button class="bg-[#4a7194] hover:bg-[#5a82a6] text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors">
+            + Add New Dog
+          </button>
+        </div>
+        
+        <div class="space-y-4">
+          <!-- Dog 1 -->
+          <div class="card-bg border border-color rounded-xl p-5 space-y-3">
+            <div class="flex justify-between items-start">
+              <div>
+                <h3 class="font-bold text-lg">Bruno</h3>
+                <div class="text-xs text-muted flex gap-2 mt-1">
+                  <span>📅 15 Sep 2026</span>
+                  <span>📍 Near Karond Bus Stand</span>
+                </div>
+              </div>
+              <span class="px-2 py-1 bg-[rgba(201,163,85,0.15)] text-[#c9a355] border border-[#b39540]/30 rounded text-xs font-semibold uppercase tracking-wider">Under Treatment</span>
+            </div>
+            <div class="text-sm text-[#b5aea8]">
+              <span class="font-medium text-[#8f8580]">Treatment:</span> Fracture — Splint applied, daily dressing
+            </div>
+            <div class="flex gap-3 mt-2">
+              <div class="w-16 h-16 bg-[#262220] rounded-lg border border-color flex items-center justify-center text-xl text-[#5e5752]">📷</div>
+              <div class="w-16 h-16 bg-[#262220] rounded-lg border border-color flex items-center justify-center text-xl text-[#5e5752]">📷</div>
+            </div>
+          </div>
+          
+          <!-- Dog 2 -->
+          <div class="card-bg border border-color rounded-xl p-5 space-y-3">
+            <div class="flex justify-between items-start">
+              <div>
+                <h3 class="font-bold text-lg">Sheru</h3>
+                <div class="text-xs text-muted flex gap-2 mt-1">
+                  <span>📅 08 Sep 2026</span>
+                  <span>📍 MP Nagar Zone-I</span>
+                </div>
+              </div>
+              <span class="px-2 py-1 bg-[rgba(194,122,102,0.15)] text-[#c27a66] border border-[rgba(194,122,102,0.2)] rounded text-xs font-semibold uppercase tracking-wider">Recovered</span>
+            </div>
+            <div class="text-sm text-[#b5aea8]">
+              <span class="font-medium text-[#8f8580]">Treatment:</span> Mange treatment — fully healed<br>
+              <span class="font-medium text-[#8f8580] mt-1 inline-block">Recovery:</span> 21 days
+            </div>
+            <div class="flex gap-3 mt-2">
+              <div class="w-16 h-16 bg-[#262220] rounded-lg border border-color flex items-center justify-center text-xl text-[#5e5752]">📷</div>
+              <div class="w-16 h-16 bg-[#262220] rounded-lg border border-color flex items-center justify-center text-xl text-[#5e5752]">📷</div>
+            </div>
+          </div>
+
+          <!-- Dog 3 -->
+          <div class="card-bg border border-color rounded-xl p-5 space-y-3">
+            <div class="flex justify-between items-start">
+              <div>
+                <h3 class="font-bold text-lg">Golu</h3>
+                <div class="text-xs text-muted flex gap-2 mt-1">
+                  <span>📅 20 Sep 2026</span>
+                  <span>📍 Arera Colony E-5</span>
+                </div>
+              </div>
+              <span class="px-2 py-1 bg-[rgba(181,94,94,0.15)] text-[#b55e5e] border border-[#a04d4d]/30 rounded text-xs font-semibold uppercase tracking-wider">Critical</span>
+            </div>
+            <div class="text-sm text-[#b5aea8]">
+              <span class="font-medium text-[#8f8580]">Treatment:</span> Hit by vehicle — surgery scheduled
+            </div>
+            <div class="flex gap-3 mt-2">
+              <div class="w-16 h-16 bg-[#262220] rounded-lg border border-color flex items-center justify-center text-xl text-[#5e5752]">📷</div>
+              <div class="w-16 h-16 bg-[#262220] rounded-lg border border-color flex items-center justify-center text-xl text-[#5e5752]">📷</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Right Column: Cows -->
+      <div class="space-y-6">
+        <div class="flex justify-between items-center">
+          <h2 class="text-xl font-bold flex items-center gap-2">🐄 Recent Cow Arrivals</h2>
+          <button class="bg-[#4a7194] hover:bg-[#5a82a6] text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors">
+            + Add New Cow
+          </button>
+        </div>
+        
+        <div class="space-y-4">
+          <!-- Cow 1 -->
+          <div class="card-bg border border-color rounded-xl p-5 space-y-3">
+            <div class="flex justify-between items-start">
+              <div>
+                <h3 class="font-bold text-lg">Lakshmi</h3>
+                <div class="text-xs text-muted flex gap-2 mt-1">
+                  <span>📅 12 Sep 2026</span>
+                  <span>📍 Hoshangabad Road</span>
+                </div>
+              </div>
+              <span class="px-2 py-1 bg-[rgba(201,163,85,0.15)] text-[#c9a355] border border-[#b39540]/30 rounded text-xs font-semibold uppercase tracking-wider">Stable</span>
+            </div>
+            <div class="text-sm text-[#b5aea8]">
+              <span class="font-medium text-[#8f8580]">Treatment:</span> Hoof infection — antibiotics
+            </div>
+            <div class="flex gap-3 mt-2">
+              <div class="w-16 h-16 bg-[#262220] rounded-lg border border-color flex items-center justify-center text-xl text-[#5e5752]">📷</div>
+              <div class="w-16 h-16 bg-[#262220] rounded-lg border border-color flex items-center justify-center text-xl text-[#5e5752]">📷</div>
+            </div>
+          </div>
+          
+          <!-- Cow 2 -->
+          <div class="card-bg border border-color rounded-xl p-5 space-y-3">
+            <div class="flex justify-between items-start">
+              <div>
+                <h3 class="font-bold text-lg">Gauri</h3>
+                <div class="text-xs text-muted flex gap-2 mt-1">
+                  <span>📅 01 Sep 2026</span>
+                  <span>📍 Berasia Road</span>
+                </div>
+              </div>
+              <span class="px-2 py-1 bg-[rgba(194,122,102,0.15)] text-[#c27a66] border border-[rgba(194,122,102,0.2)] rounded text-xs font-semibold uppercase tracking-wider">Recovered</span>
+            </div>
+            <div class="text-sm text-[#b5aea8]">
+              <span class="font-medium text-[#8f8580]">Treatment:</span> Malnourishment — diet plan completed<br>
+              <span class="font-medium text-[#8f8580] mt-1 inline-block">Recovery:</span> 28 days
+            </div>
+            <div class="flex gap-3 mt-2">
+              <div class="w-16 h-16 bg-[#262220] rounded-lg border border-color flex items-center justify-center text-xl text-[#5e5752]">📷</div>
+              <div class="w-16 h-16 bg-[#262220] rounded-lg border border-color flex items-center justify-center text-xl text-[#5e5752]">📷</div>
+            </div>
+          </div>
+
+          <!-- Cow 3 -->
+          <div class="card-bg border border-color rounded-xl p-5 space-y-3">
+            <div class="flex justify-between items-start">
+              <div>
+                <h3 class="font-bold text-lg">Nandi</h3>
+                <div class="text-xs text-muted flex gap-2 mt-1">
+                  <span>📅 18 Sep 2026</span>
+                  <span>📍 Bairagarh Railway Crossing</span>
+                </div>
+              </div>
+              <span class="px-2 py-1 bg-[rgba(181,94,94,0.15)] text-[#b55e5e] border border-[#a04d4d]/30 rounded text-xs font-semibold uppercase tracking-wider">Critical</span>
+            </div>
+            <div class="text-sm text-[#b5aea8]">
+              <span class="font-medium text-[#8f8580]">Treatment:</span> Road accident — leg fracture, surgery pending
+            </div>
+            <div class="flex gap-3 mt-2">
+              <div class="w-16 h-16 bg-[#262220] rounded-lg border border-color flex items-center justify-center text-xl text-[#5e5752]">📷</div>
+              <div class="w-16 h-16 bg-[#262220] rounded-lg border border-color flex items-center justify-center text-xl text-[#5e5752]">📷</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    </section>
+
+    <!-- Bottom Quick Actions Row -->
+    <section class="flex flex-col sm:flex-row gap-4 border-t border-color pt-8 mt-4 justify-start">
+      <a href="wireframe-phase1-dogs.html" class="w-full sm:w-auto text-center px-6 py-3 card-bg border border-color rounded-xl hover:bg-[#262220] transition-colors font-medium">
+        📋 View All Dogs (47)
+      </a>
+      <a href="wireframe-phase1-cows.html" class="w-full sm:w-auto text-center px-6 py-3 card-bg border border-color rounded-xl hover:bg-[#262220] transition-colors font-medium">
+        📋 View All Cows (23)
+      </a>
+      <button onclick="alert('Generating PDF report...')" class="w-full sm:w-auto text-center px-6 py-3 card-bg border border-[#a86b56]/50 text-[#c27a66] rounded-xl hover:bg-[#262220] transition-colors font-medium ml-0 sm:ml-auto">
+        📊 Export Census Report
+      </button>
+    </section>
+
+  </div>
+
+</body>
+</html>

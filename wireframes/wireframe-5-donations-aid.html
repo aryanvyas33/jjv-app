@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wireframe 5: Jeev Jantu Vihar - 80G & CSR Aid Hub</title>
+  <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+  <style>
+    :root {
+      --background: #0f172a;
+      --card: #1e293b;
+      --border: #334155;
+      --foreground: #f8fafc;
+      --muted-foreground: #94a3b8;
+    }
+    body { background-color: var(--background); color: var(--foreground); }
+  </style>
+</head>
+<body class="p-6 max-w-7xl mx-auto space-y-6">
+
+  <div class="flex items-center justify-between border-b border-[var(--border)] pb-4">
+    <div>
+      <span class="text-xs font-bold text-emerald-400 uppercase tracking-wider">Wireframe 5 • Jeev Jantu Vihar (Bhopal)</span>
+      <h1 class="text-2xl font-bold">80G Tax Exemption & In-Kind Aid Management</h1>
+      <p class="text-sm text-[var(--muted-foreground)]">Issuing Form 10BE compliant receipts, logging food/blanket aid & matching BHEL CSR grants to vendor bills</p>
+    </div>
+    <div class="flex space-x-2">
+      <a href="index.html" class="px-3 py-1.5 rounded-lg bg-sky-600 text-white text-xs font-semibold">← Master Prototype</a>
+      <a href="wireframe-mobile-app.html" target="_blank" class="px-3 py-1.5 rounded-lg bg-emerald-600 text-white text-xs font-semibold">📱 Open Mobile App</a>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+    <div class="bg-[var(--card)] p-4 rounded-xl border border-[var(--border)]">
+      <span class="text-xs text-[var(--muted-foreground)]">CSR & Grant Funds Available</span>
+      <div class="text-2xl font-black mt-1 text-emerald-400">₹2,60,700.00</div>
+      <p class="text-xs text-[var(--muted-foreground)] mt-2">BHEL Bhopal CSR + Citizen Winter Drive Pool</p>
+    </div>
+    <div class="bg-[var(--card)] p-4 rounded-xl border border-[var(--border)]">
+      <span class="text-xs text-[var(--muted-foreground)]">In-Kind Aid Logged (YTD)</span>
+      <div class="text-2xl font-black mt-1 text-purple-400">Est. ₹4,82,000.00</div>
+      <p class="text-xs text-[var(--muted-foreground)] mt-2">2,400 kg food/grain & 120 blankets donated</p>
+    </div>
+    <div class="bg-[var(--card)] p-4 rounded-xl border border-[var(--border)]">
+      <span class="text-xs text-[var(--muted-foreground)]">80G Certificates Issued</span>
+      <div class="text-2xl font-black mt-1 text-sky-400">100% 10BE Ready</div>
+      <p class="text-xs text-[var(--muted-foreground)] mt-2">PAN-linked instant WhatsApp delivery</p>
+    </div>
+  </div>
+
+  <div class="bg-[var(--card)] p-4 rounded-xl border border-[var(--border)] space-y-3">
+    <h3 class="font-bold text-sm">Financial Grant-to-Vendor Invoice Allocation Engine</h3>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div class="bg-[var(--background)] p-3 rounded-lg border border-[var(--border)] space-y-2">
+        <div class="flex justify-between">
+          <span class="font-bold text-xs text-sky-400">BHEL Bhopal CSR Animal Welfare Grant</span>
+          <span class="text-xs text-emerald-400 font-bold">₹2,50,000 Pool</span>
+        </div>
+        <p class="text-[11px] text-[var(--muted-foreground)]">Matched directly to veterinary medicines & vaccines:</p>
+        <div class="bg-[var(--card)] p-2 rounded text-xs space-y-1">
+          <div class="flex justify-between">
+            <span>Bhopal Vet Care (Bill #8841 - Nobivac & Melonex)</span>
+            <strong class="text-emerald-400">₹17,300.00</strong>
+          </div>
+          <div class="flex justify-between font-bold border-t border-[var(--border)] pt-1 text-[11px]">
+            <span>Remaining Grant Balance:</span>
+            <span class="text-sky-400">₹2,18,200.00</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-[var(--background)] p-3 rounded-lg border border-[var(--border)] space-y-2">
+        <div class="flex justify-between">
+          <span class="font-bold text-xs text-amber-400">Bhopal Winter Animal Food Drive (UPI)</span>
+          <span class="text-xs text-amber-400 font-bold">₹85,000 Pool</span>
+        </div>
+        <p class="text-[11px] text-[var(--muted-foreground)]">Matched directly to Karond Mandi grain shipments:</p>
+        <div class="bg-[var(--card)] p-2 rounded text-xs space-y-1">
+          <div class="flex justify-between">
+            <span>Karond Mandi Grain (Challan #4029 - 20 Sacks Rice)</span>
+            <strong class="text-emerald-400">₹24,500.00</strong>
+          </div>
+          <div class="flex justify-between font-bold border-t border-[var(--border)] pt-1 text-[11px]">
+            <span>Remaining Fund Balance:</span>
+            <span class="text-amber-400">₹42,500.00</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="bg-[var(--card)] p-4 rounded-xl border border-[var(--border)] space-y-3">
+    <h3 class="font-bold text-sm">Recent 80G & In-Kind Aid Register</h3>
+    <table class="w-full text-xs text-left">
+      <thead>
+        <tr class="border-b border-[var(--border)] text-[var(--muted-foreground)]">
+          <th class="pb-2">Donor Name</th>
+          <th class="pb-2">Donated Items</th>
+          <th class="pb-2">Qty</th>
+          <th class="pb-2">Est. Value (₹)</th>
+          <th class="pb-2">PAN Card</th>
+          <th class="pb-2 text-right">Tax Certificate</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-[var(--border)]">
+        <tr>
+          <td class="py-2.5 font-bold">Smt. Anita Sharma</td>
+          <td>Drools Focus Adult 15kg + Warm Blankets</td>
+          <td>4 Bags + 10 Blankets</td>
+          <td class="text-emerald-400 font-bold">₹12,800.00</td>
+          <td class="font-mono">AAAPS1234K</td>
+          <td class="text-right text-sky-400 underline">WhatsApp PDF #88</td>
+        </tr>
+        <tr>
+          <td class="py-2.5 font-bold">Shri Rajeev Saxena</td>
+          <td>Parvo Puppy Emergency Medical Aid</td>
+          <td>Direct UPI Transfer</td>
+          <td class="text-emerald-400 font-bold">₹15,000.00</td>
+          <td class="font-mono">BPLPS4419M</td>
+          <td class="text-right text-sky-400 underline">WhatsApp PDF #89</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</body>
+</html>

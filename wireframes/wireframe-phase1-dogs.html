@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dog Profiles - Jeev Jantu Vihar</title>
+    <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+    <style>
+        :root {
+            --background: #141110;
+            --card: #1e1b19;
+            --border: #332e2b;
+            --foreground: #ede8e3;
+            --muted-foreground: #8f8580;
+        }
+        body { 
+            background-color: var(--background); 
+            color: var(--foreground); 
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        .filter-chip.active { background-color: #6b94b8; color: white; border-color: #6b94b8; }
+        .hidden-row { display: none; }
+    </style>
+</head>
+<body class="p-4 md:p-8 min-h-screen">
+
+    <!-- Header Section -->
+    <div class="max-w-6xl mx-auto mb-8">
+        <div class="flex justify-between items-start mb-4">
+            <div>
+                <span class="inline-block bg-[rgba(143,92,72,0.3)] text-[#c27a66] border border-[rgba(194,122,102,0.2)] px-3 py-1 rounded-full text-sm font-medium mb-3">Phase 1 • Dog Section 🐕</span>
+                <h1 class="text-3xl font-bold mb-2">Dog Profiles — Jeev Jantu Vihar, Bhopal</h1>
+                <p class="text-[var(--muted-foreground)]">Complete rescue records, treatment tracking, and recovery photos</p>
+            </div>
+            <a href="wireframe-phase1-dashboard.html" class="flex items-center text-[#6b94b8] hover:text-[#8badc8] transition-colors">
+                ← Back to Dashboard
+            </a>
+        </div>
+    </div>
+
+    <!-- Main Content Area -->
+    <div class="max-w-6xl mx-auto bg-[var(--card)] border border-[var(--border)] rounded-xl overflow-hidden shadow-lg">
+        
+        <!-- Tab Navigation -->
+        <div class="flex border-b border-[var(--border)] bg-[#1a1714]">
+            <button onclick="switchTab('all-dogs')" id="btn-all-dogs" class="tab-btn flex-1 py-4 px-6 text-center font-medium border-b-2 border-[#5a82a6] text-[#6b94b8] hover:bg-[#262220] transition-colors">📋 All Dogs</button>
+            <button onclick="switchTab('add-dog')" id="btn-add-dog" class="tab-btn flex-1 py-4 px-6 text-center font-medium border-b-2 border-transparent text-[var(--muted-foreground)] hover:text-[var(--foreground)] hover:bg-[#262220] transition-colors">➕ Add New Dog</button>
+            <button onclick="switchTab('stats')" id="btn-stats" class="tab-btn flex-1 py-4 px-6 text-center font-medium border-b-2 border-transparent text-[var(--muted-foreground)] hover:text-[var(--foreground)] hover:bg-[#262220] transition-colors">📊 Statistics</button>
+        </div>
+
+        <div class="p-6">
+            
+            <!-- TAB 1: All Dogs List -->
+            <div id="all-dogs" class="tab-content active">
+                
+                <!-- Controls -->
+                <div class="flex flex-col md:flex-row justify-between items-center mb-6 gap-4">
+                    <div class="relative w-full md:w-96">
+                        <input type="text" placeholder="Search dogs by name, location, or condition..." class="w-full bg-[#1a1714] border border-[var(--border)] rounded-lg py-2 pl-10 pr-4 focus:outline-none focus:border-[#5a82a6] text-[var(--foreground)] placeholder-[var(--muted-foreground)]">
+                        <span class="absolute left-3 top-2.5 text-[var(--muted-foreground)]">🔍</span>
+                    </div>
+                    <div class="flex flex-wrap gap-2 justify-center" id="filter-chips">
+                        <button onclick="filterDogs('All', this)" class="filter-chip active px-4 py-1.5 rounded-full border border-[var(--border)] text-sm transition-colors">All (47)</button>
+                        <button onclick="filterDogs('Under Treatment', this)" class="filter-chip px-4 py-1.5 rounded-full border border-[var(--border)] text-[var(--muted-foreground)] hover:border-[#8f8580] text-sm transition-colors">Under Treatment (8)</button>
+                        <button onclick="filterDogs('Recovered', this)" class="filter-chip px-4 py-1.5 rounded-full border border-[var(--border)] text-[var(--muted-foreground)] hover:border-[#8f8580] text-sm transition-colors">Recovered (22)</button>
+                        <button onclick="filterDogs('Critical', this)" class="filter-chip px-4 py-1.5 rounded-full border border-[var(--border)] text-[var(--muted-foreground)] hover:border-[#8f8580] text-sm transition-colors">Critical (3)</button>
+                        <button onclick="filterDogs('Stable', this)" class="filter-chip px-4 py-1.5 rounded-full border border-[var(--border)] text-[var(--muted-foreground)] hover:border-[#8f8580] text-sm transition-colors">Stable (14)</button>
+                    </div>
+                </div>
+
+                <!-- Table -->
+                <div class="overflow-x-auto border border-[var(--border)] rounded-lg">
+                    <table class="w-full text-left text-sm whitespace-nowrap">
+                        <thead class="bg-[#262220]/50 text-[var(--muted-foreground)] border-b border-[var(--border)]">
+                            <tr>
+                                <th class="px-4 py-3 font-medium">#</th>
+                                <th class="px-4 py-3 font-medium">Name</th>
+                                <th class="px-4 py-3 font-medium">Rescue Date</th>
+                                <th class="px-4 py-3 font-medium">Location</th>
+                                <th class="px-4 py-3 font-medium">Condition</th>
+                                <th class="px-4 py-3 font-medium">Treatment</th>
+                                <th class="px-4 py-3 font-medium">Recovery</th>
+                                <th class="px-4 py-3 font-medium">Photos</th>
+                                <th class="px-4 py-3 font-medium text-right">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="dogs-table-body" class="divide-y divide-[var(--border)] text-[#b5aea8]">
+                            <tr class="hover:bg-[#262220]/30" data-status="Under Treatment">
+                                <td class="px-4 py-3">01</td>
+                                <td class="px-4 py-3 font-medium text-white">Bruno</td>
+                                <td class="px-4 py-3">15-Sep-2026</td>
+                                <td class="px-4 py-3">Karond Bus Stand</td>
+                                <td class="px-4 py-3"><span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-[#b39540]/30 text-[#c9a355] border border-[#b39540]/50">Under Treatment</span></td>
+                                <td class="px-4 py-3">Fracture - splint</td>
+                                <td class="px-4 py-3">Ongoing</td>
+                                <td class="px-4 py-3">📷 2</td>
+                                <td class="px-4 py-3 text-right">
+                                    <button onclick="openModal('Bruno')" class="text-[#6b94b8] hover:text-[#8badc8] mr-3">View</button>
+                                    <button class="text-[#8f8580] hover:text-white">Edit</button>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-[#262220]/30" data-status="Recovered">
+                                <td class="px-4 py-3">02</td>
+                                <td class="px-4 py-3 font-medium text-white">Sheru</td>
+                                <td class="px-4 py-3">08-Sep-2026</td>
+                                <td class="px-4 py-3">MP Nagar Zone-I</td>
+                                <td class="px-4 py-3"><span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-[#8f5c48]/30 text-[#c27a66] border border-[#8f5c48]/50">Recovered</span></td>
+                                <td class="px-4 py-3">Mange treatment</td>
+                                <td class="px-4 py-3">21 days</td>
+                                <td class="px-4 py-3">📷 4</td>
+                                <td class="px-4 py-3 text-right">
+                                    <button onclick="openModal('Sheru')" class="text-[#6b94b8] hover:text-[#8badc8] mr-3">View</button>
+                                    <button class="text-[#8f8580] hover:text-white">Edit</button>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-[#262220]/30" data-status="Critical">
+                                <td class="px-4 py-3">03</td>
+                                <td class="px-4 py-3 font-medium text-white">Golu</td>
+                                <td class="px-4 py-3">20-Sep-2026</td>
+                                <td class="px-4 py-3">Arera Colony E-5</td>
+                                <td class="px-4 py-3"><span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-[#a04d4d]/30 text-[#b55e5e] border border-[#a04d4d]/50">Critical</span></td>
+                                <td class="px-4 py-3">Vehicle accident</td>
+                                <td class="px-4 py-3">Ongoing</td>
+                                <td class="px-4 py-3">📷 1</td>
+                                <td class="px-4 py-3 text-right">
+                                    <button onclick="openModal('Golu')" class="text-[#6b94b8] hover:text-[#8badc8] mr-3">View</button>
+                                    <button class="text-[#8f8580] hover:text-white">Edit</button>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-[#262220]/30" data-status="Recovered">
+                                <td class="px-4 py-3">04</td>
+                                <td class="px-4 py-3 font-medium text-white">Rani</td>
+                                <td class="px-4 py-3">02-Sep-2026</td>
+                                <td class="px-4 py-3">Kolar Road</td>
+                                <td class="px-4 py-3"><span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-[#8f5c48]/30 text-[#c27a66] border border-[#8f5c48]/50">Recovered</span></td>
+                                <td class="px-4 py-3">Tick fever</td>
+                                <td class="px-4 py-3">14 days</td>
+                                <td class="px-4 py-3">📷 3</td>
+                                <td class="px-4 py-3 text-right">
+                                    <button onclick="openModal('Rani')" class="text-[#6b94b8] hover:text-[#8badc8] mr-3">View</button>
+                                    <button class="text-[#8f8580] hover:text-white">Edit</button>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-[#262220]/30" data-status="Stable">
+                                <td class="px-4 py-3">05</td>
+                                <td class="px-4 py-3 font-medium text-white">Moti</td>
+                                <td class="px-4 py-3">10-Sep-2026</td>
+                                <td class="px-4 py-3">Habibganj Station</td>
+                                <td class="px-4 py-3"><span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-[#5a82a6]/30 text-[#6b94b8] border border-[#5a82a6]/50">Stable</span></td>
+                                <td class="px-4 py-3">Skin infection</td>
+                                <td class="px-4 py-3">Ongoing</td>
+                                <td class="px-4 py-3">📷 2</td>
+                                <td class="px-4 py-3 text-right">
+                                    <button onclick="openModal('Moti')" class="text-[#6b94b8] hover:text-[#8badc8] mr-3">View</button>
+                                    <button class="text-[#8f8580] hover:text-white">Edit</button>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-[#262220]/30" data-status="Recovered">
+                                <td class="px-4 py-3">06</td>
+                                <td class="px-4 py-3 font-medium text-white">Chiku</td>
+                                <td class="px-4 py-3">25-Aug-2026</td>
+                                <td class="px-4 py-3">BHEL Township</td>
+                                <td class="px-4 py-3"><span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-[#8f5c48]/30 text-[#c27a66] border border-[#8f5c48]/50">Recovered</span></td>
+                                <td class="px-4 py-3">Deworming</td>
+                                <td class="px-4 py-3">7 days</td>
+                                <td class="px-4 py-3">📷 2</td>
+                                <td class="px-4 py-3 text-right">
+                                    <button onclick="openModal('Chiku')" class="text-[#6b94b8] hover:text-[#8badc8] mr-3">View</button>
+                                    <button class="text-[#8f8580] hover:text-white">Edit</button>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-[#262220]/30" data-status="Under Treatment">
+                                <td class="px-4 py-3">07</td>
+                                <td class="px-4 py-3 font-medium text-white">Kallu</td>
+                                <td class="px-4 py-3">19-Sep-2026</td>
+                                <td class="px-4 py-3">Bittan Market</td>
+                                <td class="px-4 py-3"><span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-[#b39540]/30 text-[#c9a355] border border-[#b39540]/50">Under Treatment</span></td>
+                                <td class="px-4 py-3">Parvo virus</td>
+                                <td class="px-4 py-3">Ongoing</td>
+                                <td class="px-4 py-3">📷 1</td>
+                                <td class="px-4 py-3 text-right">
+                                    <button onclick="openModal('Kallu')" class="text-[#6b94b8] hover:text-[#8badc8] mr-3">View</button>
+                                    <button class="text-[#8f8580] hover:text-white">Edit</button>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-[#262220]/30" data-status="Stable">
+                                <td class="px-4 py-3">08</td>
+                                <td class="px-4 py-3 font-medium text-white">Pinky</td>
+                                <td class="px-4 py-3">05-Sep-2026</td>
+                                <td class="px-4 py-3">Shahpura Lake</td>
+                                <td class="px-4 py-3"><span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-[#5a82a6]/30 text-[#6b94b8] border border-[#5a82a6]/50">Stable</span></td>
+                                <td class="px-4 py-3">Ear infection</td>
+                                <td class="px-4 py-3">Ongoing</td>
+                                <td class="px-4 py-3">📷 3</td>
+                                <td class="px-4 py-3 text-right">
+                                    <button onclick="openModal('Pinky')" class="text-[#6b94b8] hover:text-[#8badc8] mr-3">View</button>
+                                    <button class="text-[#8f8580] hover:text-white">Edit</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- TAB 2: Add New Dog Form -->
+            <div id="add-dog" class="tab-content">
+                <form class="max-w-4xl mx-auto space-y-8" onsubmit="event.preventDefault(); alert('Dog Profile Saved!');">
+                    
+                    <!-- Basic Information -->
+                    <div>
+                        <h2 class="text-lg font-semibold text-white mb-4 flex items-center"><span class="bg-[rgba(107,148,184,0.15)] text-[#6b94b8] p-1.5 rounded mr-2">ℹ️</span> Basic Information</h2>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 bg-[#262220]/30 p-5 rounded-lg border border-[var(--border)]">
+                            <div>
+                                <label class="block text-sm font-medium text-[#b5aea8] mb-1">Dog Name</label>
+                                <input type="text" class="w-full bg-[#1a1714] border border-[var(--border)] rounded py-2 px-3 focus:outline-none focus:border-[#5a82a6]" placeholder="Enter name">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-[#b5aea8] mb-1">Estimated Age</label>
+                                <input type="text" class="w-full bg-[#1a1714] border border-[var(--border)] rounded py-2 px-3 focus:outline-none focus:border-[#5a82a6]" placeholder="e.g. 2 years, 6 months">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-[#b5aea8] mb-1">Breed</label>
+                                <select class="w-full bg-[#1a1714] border border-[var(--border)] rounded py-2 px-3 focus:outline-none focus:border-[#5a82a6] text-[#b5aea8]">
+                                    <option>Indian Pariah</option>
+                                    <option>Labrador Mix</option>
+                                    <option>German Shepherd Mix</option>
+                                    <option>Rottweiler Mix</option>
+                                    <option>Unknown/Mixed</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-[#b5aea8] mb-1">Gender</label>
+                                <div class="flex items-center space-x-4 mt-2">
+                                    <label class="inline-flex items-center">
+                                        <input type="radio" name="gender" value="male" class="text-[#5a82a6] bg-[#1a1714] border-[var(--border)] focus:ring-[#5a82a6]">
+                                        <span class="ml-2">Male</span>
+                                    </label>
+                                    <label class="inline-flex items-center">
+                                        <input type="radio" name="gender" value="female" class="text-[#5a82a6] bg-[#1a1714] border-[var(--border)] focus:ring-[#5a82a6]">
+                                        <span class="ml-2">Female</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-[#b5aea8] mb-1">Weight at rescue (kg)</label>
+                                <input type="number" step="0.1" class="w-full bg-[#1a1714] border border-[var(--border)] rounded py-2 px-3 focus:outline-none focus:border-[#5a82a6]" placeholder="e.g. 15.5">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Rescue Details -->
+                    <div>
+                        <h2 class="text-lg font-semibold text-white mb-4 flex items-center"><span class="bg-[rgba(194,122,102,0.15)] text-[#c27a66] p-1.5 rounded mr-2">📍</span> Rescue Details</h2>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 bg-[#262220]/30 p-5 rounded-lg border border-[var(--border)]">
+                            <div>
+                                <label class="block text-sm font-medium text-[#b5aea8] mb-1">Date of Rescue</label>
+                                <input type="date" class="w-full bg-[#1a1714] border border-[var(--border)] rounded py-2 px-3 focus:outline-none focus:border-[#5a82a6] text-[#b5aea8]">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-[#b5aea8] mb-1">Location of Rescue</label>
+                                <input type="text" class="w-full bg-[#1a1714] border border-[var(--border)] rounded py-2 px-3 focus:outline-none focus:border-[#5a82a6]" placeholder="e.g. Near Karond Bus Stand, Bhopal">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-[#b5aea8] mb-1">Condition at Time of Rescue</label>
+                                <select class="w-full bg-[#1a1714] border border-[var(--border)] rounded py-2 px-3 focus:outline-none focus:border-[#5a82a6] text-[#b5aea8]">
+                                    <option>Critical</option>
+                                    <option>Severe</option>
+                                    <option>Moderate</option>
+                                    <option>Mild</option>
+                                    <option>Healthy</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-[#b5aea8] mb-1">Rescued By</label>
+                                <input type="text" class="w-full bg-[#1a1714] border border-[var(--border)] rounded py-2 px-3 focus:outline-none focus:border-[#5a82a6]" placeholder="Staff/Volunteer name">
+                            </div>
+                            <div class="md:col-span-2">
+                                <label class="block text-sm font-medium text-[#b5aea8] mb-1">Condition Description</label>
+                                <textarea rows="3" class="w-full bg-[#1a1714] border border-[var(--border)] rounded py-2 px-3 focus:outline-none focus:border-[#5a82a6] placeholder-[var(--muted-foreground)]" placeholder="Detail the injuries, symptoms, or circumstances..."></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Treatment Information -->
+                    <div>
+                        <h2 class="text-lg font-semibold text-white mb-4 flex items-center"><span class="bg-[rgba(201,163,85,0.15)] text-[#c9a355] p-1.5 rounded mr-2">⚕️</span> Treatment Information</h2>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 bg-[#262220]/30 p-5 rounded-lg border border-[var(--border)]">
+                            <div class="flex items-center mb-2 md:col-span-2">
+                                <label class="text-sm font-medium text-[#b5aea8] mr-4">Treatment Ongoing?</label>
+                                <label class="relative inline-flex items-center cursor-pointer">
+                                  <input type="checkbox" value="" class="sr-only peer" checked>
+                                  <div class="w-11 h-6 bg-[#332e2b] peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#5a82a6]"></div>
+                                  <span class="ml-3 text-sm font-medium text-[#b5aea8]">Yes</span>
+                                </label>
+                            </div>
+                            <div class="md:col-span-2">
+                                <label class="block text-sm font-medium text-[#b5aea8] mb-1">Treatment Details</label>
+                                <textarea rows="3" class="w-full bg-[#1a1714] border border-[var(--border)] rounded py-2 px-3 focus:outline-none focus:border-[#5a82a6] placeholder-[var(--muted-foreground)]" placeholder="Medications, surgeries, specific care instructions..."></textarea>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-[#b5aea8] mb-1">Recovery Time if Treated</label>
+                                <input type="text" class="w-full bg-[#1a1714] border border-[var(--border)] rounded py-2 px-3 focus:outline-none focus:border-[#5a82a6]" placeholder="e.g. 21 days">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-[#b5aea8] mb-1">Veterinary Doctor</label>
+                                <input type="text" class="w-full bg-[#1a1714] border border-[var(--border)] rounded py-2 px-3 focus:outline-none focus:border-[#5a82a6]" placeholder="Doctor's name">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Photo Upload -->
+                    <div>
+                        <h2 class="text-lg font-semibold text-white mb-4 flex items-center"><span class="bg-[rgba(181,94,94,0.15)] text-[#b55e5e] p-1.5 rounded mr-2">📷</span> Photos</h2>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 bg-[#262220]/30 p-5 rounded-lg border border-[var(--border)]">
+                            <div onclick="alert('File picker would open here')" class="border-2 border-dashed border-[var(--border)] hover:border-[#5a82a6] hover:bg-[#262220]/50 rounded-lg p-8 flex flex-col items-center justify-center cursor-pointer transition-colors text-center">
+                                <span class="text-3xl mb-2">📸</span>
+                                <span class="text-sm font-medium text-[#b5aea8]">Upload rescue photo</span>
+                                <span class="text-xs text-[var(--muted-foreground)] mt-1">(Before Image)</span>
+                            </div>
+                            <div onclick="alert('File picker would open here')" class="border-2 border-dashed border-[var(--border)] hover:border-[#a86b56] hover:bg-[#262220]/50 rounded-lg p-8 flex flex-col items-center justify-center cursor-pointer transition-colors text-center">
+                                <span class="text-3xl mb-2">✨</span>
+                                <span class="text-sm font-medium text-[#b5aea8]">Upload recovery photo</span>
+                                <span class="text-xs text-[var(--muted-foreground)] mt-1">(After Image)</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="w-full bg-[#8f5c48] hover:bg-[#a86b56] text-white font-medium py-3 rounded-lg transition-colors">
+                        Save Dog Profile ✓
+                    </button>
+                </form>
+            </div>
+
+            <!-- TAB 3: Statistics -->
+            <div id="stats" class="tab-content">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+                    
+                    <div class="bg-[#262220]/40 border border-[var(--border)] p-5 rounded-xl">
+                        <p class="text-[var(--muted-foreground)] text-sm font-medium mb-1">Total Dogs Rescued</p>
+                        <p class="text-3xl font-bold text-white">47</p>
+                    </div>
+                    
+                    <div class="bg-[#262220]/40 border border-[var(--border)] p-5 rounded-xl">
+                        <p class="text-[var(--muted-foreground)] text-sm font-medium mb-1">Recovery Rate</p>
+                        <div class="flex items-end space-x-2">
+                            <p class="text-3xl font-bold text-[#c27a66]">68%</p>
+                        </div>
+                        <div class="w-full bg-[#332e2b] rounded-full h-1.5 mt-3">
+                            <div class="bg-[#a86b56] h-1.5 rounded-full" style="width: 68%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-[#262220]/40 border border-[var(--border)] p-5 rounded-xl">
+                        <p class="text-[var(--muted-foreground)] text-sm font-medium mb-1">Avg. Recovery Time</p>
+                        <p class="text-3xl font-bold text-[#6b94b8]">18 <span class="text-lg font-normal text-[var(--muted-foreground)]">days</span></p>
+                    </div>
+
+                    <div class="bg-[#262220]/40 border border-[var(--border)] p-5 rounded-xl">
+                        <p class="text-[var(--muted-foreground)] text-sm font-medium mb-1">Critical Cases Active</p>
+                        <p class="text-3xl font-bold text-[#b55e5e]">3</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    
+                    <!-- Monthly Chart Placeholder -->
+                    <div class="bg-[#262220]/30 border border-[var(--border)] p-6 rounded-xl">
+                        <h3 class="text-lg font-medium text-white mb-6">Monthly Rescues</h3>
+                        <div class="h-48 flex items-end justify-between px-2 pb-2 border-b border-[var(--border)] space-x-2">
+                            <div class="w-full bg-[rgba(107,148,184,0.15)] hover:bg-[#5a82a6]/40 rounded-t border-t border-[#5a82a6]/50" style="height: 40%"></div>
+                            <div class="w-full bg-[rgba(107,148,184,0.15)] hover:bg-[#5a82a6]/40 rounded-t border-t border-[#5a82a6]/50" style="height: 55%"></div>
+                            <div class="w-full bg-[rgba(107,148,184,0.15)] hover:bg-[#5a82a6]/40 rounded-t border-t border-[#5a82a6]/50" style="height: 30%"></div>
+                            <div class="w-full bg-[rgba(107,148,184,0.15)] hover:bg-[#5a82a6]/40 rounded-t border-t border-[#5a82a6]/50" style="height: 70%"></div>
+                            <div class="w-full bg-[#5a82a6]/40 hover:bg-[#5a82a6]/60 rounded-t border-t border-[#5a82a6]" style="height: 90%"></div>
+                            <div class="w-full bg-[rgba(107,148,184,0.15)] hover:bg-[#5a82a6]/40 rounded-t border-t border-[#5a82a6]/50" style="height: 60%"></div>
+                        </div>
+                        <div class="flex justify-between text-xs text-[var(--muted-foreground)] mt-2 px-2">
+                            <span>Apr</span><span>May</span><span>Jun</span><span>Jul</span><span>Aug</span><span>Sep</span>
+                        </div>
+                    </div>
+
+                    <!-- Top Locations -->
+                    <div class="bg-[#262220]/30 border border-[var(--border)] p-6 rounded-xl">
+                        <h3 class="text-lg font-medium text-white mb-4">Top Rescue Locations</h3>
+                        <div class="space-y-4">
+                            <div>
+                                <div class="flex justify-between text-sm mb-1">
+                                    <span class="text-[#b5aea8]">Karond</span>
+                                    <span class="text-[var(--muted-foreground)]">8 rescues</span>
+                                </div>
+                                <div class="w-full bg-[#332e2b] rounded-full h-2">
+                                    <div class="bg-[#b39540] h-2 rounded-full" style="width: 80%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-sm mb-1">
+                                    <span class="text-[#b5aea8]">MP Nagar</span>
+                                    <span class="text-[var(--muted-foreground)]">6 rescues</span>
+                                </div>
+                                <div class="w-full bg-[#332e2b] rounded-full h-2">
+                                    <div class="bg-[#b39540]/80 h-2 rounded-full" style="width: 60%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-sm mb-1">
+                                    <span class="text-[#b5aea8]">Arera Colony</span>
+                                    <span class="text-[var(--muted-foreground)]">5 rescues</span>
+                                </div>
+                                <div class="w-full bg-[#332e2b] rounded-full h-2">
+                                    <div class="bg-[#b39540]/60 h-2 rounded-full" style="width: 50%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-sm mb-1">
+                                    <span class="text-[#b5aea8]">BHEL Township</span>
+                                    <span class="text-[var(--muted-foreground)]">3 rescues</span>
+                                </div>
+                                <div class="w-full bg-[#332e2b] rounded-full h-2">
+                                    <div class="bg-[#b39540]/40 h-2 rounded-full" style="width: 30%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Dog Detail Modal -->
+    <div id="dog-modal" class="fixed inset-0 bg-black/70 flex items-center justify-center z-50 hidden p-4">
+        <div class="bg-[var(--card)] border border-[var(--border)] rounded-xl w-full max-w-3xl max-h-[90vh] overflow-y-auto shadow-2xl relative">
+            <button onclick="closeModal()" class="absolute top-4 right-4 text-[var(--muted-foreground)] hover:text-white text-xl">&times;</button>
+            
+            <div class="p-6 md:p-8">
+                <!-- Header Profile Info -->
+                <div class="flex flex-col md:flex-row gap-6 mb-8 pb-8 border-b border-[var(--border)]">
+                    <div class="w-24 h-24 rounded-full bg-[#262220] border-4 border-[var(--border)] flex items-center justify-center text-4xl overflow-hidden shrink-0">
+                        🐕
+                    </div>
+                    <div>
+                        <div class="flex items-center gap-3 mb-1">
+                            <h2 id="modal-dog-name" class="text-2xl font-bold text-white">Dog Name</h2>
+                            <span class="bg-[#262220] text-[var(--muted-foreground)] text-xs px-2 py-1 rounded font-mono border border-[var(--border)]">JJV-D-047</span>
+                        </div>
+                        <p class="text-[var(--muted-foreground)] mb-4">Indian Pariah / Mixed • Est. ~2 years • Male • 15.5 kg</p>
+                        
+                        <div class="flex gap-2">
+                            <span class="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium bg-[#b39540]/30 text-[#c9a355] border border-[#b39540]/50">Under Treatment</span>
+                            <span class="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium bg-[#262220] text-[#b5aea8] border border-[var(--border)]">Rescued: 15-Sep-2026</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Rescue & Treatment Info -->
+                    <div class="space-y-6">
+                        <div>
+                            <h3 class="text-sm font-semibold text-white uppercase tracking-wider mb-3">Rescue Information</h3>
+                            <div class="space-y-2 text-sm text-[#b5aea8]">
+                                <p><span class="text-[var(--muted-foreground)]">Location:</span> Karond Bus Stand (Bhopal)</p>
+                                <p><span class="text-[var(--muted-foreground)]">Condition:</span> Critical (Fracture in left hind leg)</p>
+                                <p><span class="text-[var(--muted-foreground)]">Rescuer:</span> Amit Sharma</p>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h3 class="text-sm font-semibold text-white uppercase tracking-wider mb-3">Treatment Timeline</h3>
+                            <div class="relative pl-4 border-l border-[#332e2b] space-y-4 text-sm">
+                                <div class="relative">
+                                    <div class="absolute -left-[21px] top-1 w-2.5 h-2.5 rounded-full bg-[#5a82a6] ring-4 ring-[#1a1714]"></div>
+                                    <p class="font-medium text-white mb-0.5">X-Ray & Splint Application</p>
+                                    <p class="text-[var(--muted-foreground)] text-xs">16-Sep-2026 • Dr. Verma</p>
+                                </div>
+                                <div class="relative">
+                                    <div class="absolute -left-[21px] top-1 w-2.5 h-2.5 rounded-full bg-[#332e2b] ring-4 ring-[#1a1714]"></div>
+                                    <p class="font-medium text-white mb-0.5">Initial Assessment & Pain Meds</p>
+                                    <p class="text-[var(--muted-foreground)] text-xs">15-Sep-2026 • Dr. Verma</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Photos & Progress -->
+                    <div class="space-y-6">
+                        <div>
+                            <h3 class="text-sm font-semibold text-white uppercase tracking-wider mb-3">Recovery Progress</h3>
+                            <div class="bg-[#262220]/50 p-4 rounded-lg border border-[var(--border)]">
+                                <div class="flex justify-between text-sm mb-2">
+                                    <span class="text-[#b5aea8]">Estimated Recovery</span>
+                                    <span class="text-[#6b94b8]">45%</span>
+                                </div>
+                                <div class="w-full bg-[#1a1714] rounded-full h-2">
+                                    <div class="bg-[#5a82a6] h-2 rounded-full" style="width: 45%"></div>
+                                </div>
+                                <p class="text-xs text-[var(--muted-foreground)] mt-2 text-right">~14 days remaining</p>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h3 class="text-sm font-semibold text-white uppercase tracking-wider mb-3">Before & After Photos</h3>
+                            <div class="flex gap-4">
+                                <div class="w-[150px]">
+                                    <div class="h-[150px] bg-[#262220] border border-[var(--border)] rounded-lg flex flex-col items-center justify-center text-[var(--muted-foreground)]">
+                                        <span class="text-2xl mb-1">📷</span>
+                                        <span class="text-xs">Before</span>
+                                    </div>
+                                    <p class="text-xs text-center text-[var(--muted-foreground)] mt-2">15-Sep-2026</p>
+                                </div>
+                                <div class="w-[150px]">
+                                    <div class="h-[150px] bg-[#262220] border border-[#4a4440] border-dashed rounded-lg flex flex-col items-center justify-center text-[var(--muted-foreground)]">
+                                        <span class="text-2xl mb-1">📷</span>
+                                        <span class="text-xs">After</span>
+                                        <span class="text-[10px] opacity-70">(Pending)</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-8 pt-4 border-t border-[var(--border)] flex justify-end gap-3">
+                    <button onclick="closeModal()" class="px-4 py-2 rounded-lg border border-[var(--border)] text-white hover:bg-[#262220] transition-colors">Close</button>
+                    <button class="px-4 py-2 rounded-lg bg-[#4a7194] hover:bg-[#5a82a6] text-white transition-colors">Update Record</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function switchTab(tabId) {
+            // Hide all tabs
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            // Reset button styles
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('border-[#5a82a6]', 'text-[#6b94b8]');
+                btn.classList.add('border-transparent', 'text-[var(--muted-foreground)]');
+            });
+            
+            // Show selected tab
+            document.getElementById(tabId).classList.add('active');
+            // Update button styles
+            const activeBtn = document.getElementById(`btn-${tabId}`);
+            activeBtn.classList.remove('border-transparent', 'text-[var(--muted-foreground)]');
+            activeBtn.classList.add('border-[#5a82a6]', 'text-[#6b94b8]');
+        }
+
+        function filterDogs(status, btnElement) {
+            // Update chip styles
+            document.querySelectorAll('.filter-chip').forEach(chip => {
+                chip.classList.remove('active', 'bg-[#6b94b8]', 'text-white', 'border-[#6b94b8]');
+                chip.classList.add('text-[var(--muted-foreground)]');
+            });
+            btnElement.classList.remove('text-[var(--muted-foreground)]');
+            btnElement.classList.add('active');
+
+            // Filter table rows
+            const rows = document.querySelectorAll('#dogs-table-body tr');
+            rows.forEach(row => {
+                if (status === 'All' || row.dataset.status === status) {
+                    row.classList.remove('hidden-row');
+                } else {
+                    row.classList.add('hidden-row');
+                }
+            });
+        }
+
+        function openModal(dogName) {
+            document.getElementById('modal-dog-name').textContent = dogName;
+            document.getElementById('dog-modal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+        }
+
+        function closeModal() {
+            document.getElementById('dog-modal').classList.add('hidden');
+            document.body.style.overflow = '';
+        }
+    </script>
+</body>
+</html>

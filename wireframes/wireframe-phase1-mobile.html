@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jeev Jantu Vihar - Mobile Wireframe</title>
+    <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+    <style>
+        :root {
+            --background: #141110;
+            --card: #1e1b19;
+            --border: #332e2b;
+            --foreground: #ede8e3;
+            --muted-foreground: #8f8580;
+        }
+        body { background-color: #120f0d; color: #ede8e3; font-family: system-ui, -apple-system, sans-serif; display: flex; flex-direction: column; align-items: center; min-height: 100vh; margin: 0; padding: 20px; box-sizing: border-box;}
+        
+        .mobile-frame {
+            width: 100%; max-width: 412px; height: 844px;
+            border-radius: 40px; border: 8px solid #332e2b;
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.7);
+            position: relative; overflow: hidden; background-color: #141110;
+            display: flex; flex-direction: column;
+        }
+        
+        .screen {
+            display: none;
+            flex-direction: column;
+            height: 100%;
+            overflow-y: auto;
+            padding-bottom: 70px; /* space for bottom nav */
+        }
+        
+        .screen.active {
+            display: flex;
+        }
+        
+        /* Hide scrollbar for Chrome, Safari and Opera */
+        .screen::-webkit-scrollbar {
+            display: none;
+        }
+        /* Hide scrollbar for IE, Edge and Firefox */
+        .screen {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+    </style>
+</head>
+<body>
+    <div class="w-full max-w-4xl mb-8 flex justify-between items-center">
+        <div>
+            <div class="text-xs text-[#c27a66] font-semibold uppercase tracking-wider mb-1">Phase 1 • Animal Profiles — Mobile Companion</div>
+            <h1 class="text-2xl font-bold">Jeev Jantu Vihar (जीव जंतु विहार), Bhopal</h1>
+        </div>
+        <a href="wireframe-phase1-dashboard.html" class="px-4 py-2 bg-[#262220] hover:bg-[#332e2b] rounded-lg text-sm border border-[#332e2b] transition-colors">← Back to Desktop Suite</a>
+    </div>
+
+    <div class="mobile-frame">
+        <!-- Status Bar -->
+        <div class="flex justify-between items-center px-6 py-3 text-xs font-medium z-50 sticky top-0 bg-[#141110]">
+            <span>09:41</span>
+            <div class="w-32 h-6 bg-[#0d0b0a] rounded-b-xl absolute top-0 left-1/2 -translate-x-1/2"></div>
+            <span class="flex gap-1 items-center">5G Jio 92% <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"></path></svg></span>
+        </div>
+
+        <!-- App Header -->
+        <div class="flex justify-between items-center px-4 py-3 border-b border-[#332e2b] bg-[#141110] z-40 sticky top-10">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-[#3d221a] rounded-xl flex items-center justify-center text-xl border border-[#754433]">🐾</div>
+                <div>
+                    <div class="font-bold text-lg leading-tight">Jeev Jantu Vihar</div>
+                    <div class="text-xs text-[#c27a66]">Animal Profiles • Phase 1</div>
+                </div>
+            </div>
+            <div class="flex items-center gap-2 bg-[#262220] rounded-full pl-3 pr-1 py-1 border border-[#332e2b]">
+                <span class="text-xs font-medium">Ravi Bhai</span>
+                <div class="w-6 h-6 bg-[#9c7c2b] rounded-full flex items-center justify-center text-xs font-bold">RB</div>
+            </div>
+        </div>
+
+        <!-- SCREEN 1: HOME -->
+        <div id="screen-home" class="screen active px-4 py-4">
+            <div class="bg-gradient-to-br from-[#262220] to-[#1a1714] rounded-2xl p-4 border border-[#332e2b] mb-4 relative overflow-hidden">
+                <div class="absolute -right-4 -top-4 text-6xl opacity-10">🐾</div>
+                <div class="text-[#8f8580] text-sm mb-1">आज की जानवरों की स्थिति</div>
+                <div class="text-xs text-[#5e5752] mb-2">(Today's Animal Status)</div>
+                <div class="text-3xl font-bold mb-2">70 <span class="text-lg text-[#8f8580] font-normal">Animals in Shelter</span></div>
+                <div class="inline-flex items-center gap-1 bg-[#3d221a]/50 text-[#c27a66] text-xs px-2 py-1 rounded-md border border-[#543024] mb-4">
+                    All Fed ✓
+                </div>
+                <div class="flex gap-3">
+                    <div class="flex-1 bg-[#120f0d]/50 rounded-xl p-3 border border-[#262220] flex justify-between items-center">
+                        <span class="text-lg">🐕</span>
+                        <div class="text-right">
+                            <div class="text-xs text-[#8f8580]">Dogs</div>
+                            <div class="font-bold">47</div>
+                        </div>
+                    </div>
+                    <div class="flex-1 bg-[#120f0d]/50 rounded-xl p-3 border border-[#262220] flex justify-between items-center">
+                        <span class="text-lg">🐄</span>
+                        <div class="text-right">
+                            <div class="text-xs text-[#8f8580]">Cows</div>
+                            <div class="font-bold">23</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-3 mb-4">
+                <button onclick="switchScreen('dogs')" class="bg-[#262220] rounded-2xl p-4 border border-[#332e2b] flex flex-col items-center justify-center gap-2 active:bg-[#332e2b] transition-colors">
+                    <span class="text-3xl">🐕</span>
+                    <div class="text-center">
+                        <div class="text-sm font-bold">कुत्तों की सूची</div>
+                        <div class="text-xs text-[#8f8580]">Dog Profiles (47)</div>
+                    </div>
+                </button>
+                <button onclick="switchScreen('cows')" class="bg-[#262220] rounded-2xl p-4 border border-[#332e2b] flex flex-col items-center justify-center gap-2 active:bg-[#332e2b] transition-colors">
+                    <span class="text-3xl">🐄</span>
+                    <div class="text-center">
+                        <div class="text-sm font-bold">गायों की सूची</div>
+                        <div class="text-xs text-[#8f8580]">Cow Profiles (23)</div>
+                    </div>
+                </button>
+            </div>
+
+            <button onclick="switchScreen('add')" class="w-full bg-gradient-to-r from-[#4a7194] to-[#4a6c8a] rounded-xl p-3 font-semibold mb-6 shadow-lg shadow-[rgba(74,113,148,0.25)] active:opacity-90 flex justify-center items-center gap-2">
+                <span>➕</span> New Rescue Entry
+            </button>
+
+            <div class="flex justify-between items-end mb-3">
+                <h3 class="font-bold">Recent Rescues</h3>
+                <span class="text-xs text-[#6b94b8] cursor-pointer">View All</span>
+            </div>
+
+            <div class="flex flex-col gap-3">
+                <div onclick="showDetail('Bruno', '🐕', 'amber')" class="bg-[#262220] rounded-xl p-3 border border-[#332e2b] flex gap-3 items-center active:bg-[#332e2b] cursor-pointer">
+                    <div class="w-12 h-12 bg-[#1a1714] rounded-lg flex items-center justify-center text-xl">🐕</div>
+                    <div class="flex-1">
+                        <div class="font-bold flex justify-between">Bruno <span class="text-xs font-normal text-[#c9a355] bg-[#4d3e1b]/30 px-2 py-0.5 rounded border border-[#6b5626]/50">Under Treatment</span></div>
+                        <div class="text-xs text-[#8f8580] mt-1">Karond, 15 Sep</div>
+                    </div>
+                </div>
+                <div onclick="showDetail('Nandi', '🐄', 'rose')" class="bg-[#262220] rounded-xl p-3 border border-[#332e2b] flex gap-3 items-center active:bg-[#332e2b] cursor-pointer">
+                    <div class="w-12 h-12 bg-[#1a1714] rounded-lg flex items-center justify-center text-xl">🐄</div>
+                    <div class="flex-1">
+                        <div class="font-bold flex justify-between">Nandi <span class="text-xs font-normal text-[#b55e5e] bg-[#421d1d]/30 px-2 py-0.5 rounded border border-[#5c2727]/50">Critical</span></div>
+                        <div class="text-xs text-[#8f8580] mt-1">Bairagarh, 18 Sep</div>
+                    </div>
+                </div>
+                <div onclick="showDetail('Golu', '🐕', 'rose')" class="bg-[#262220] rounded-xl p-3 border border-[#332e2b] flex gap-3 items-center active:bg-[#332e2b] cursor-pointer">
+                    <div class="w-12 h-12 bg-[#1a1714] rounded-lg flex items-center justify-center text-xl">🐕</div>
+                    <div class="flex-1">
+                        <div class="font-bold flex justify-between">Golu <span class="text-xs font-normal text-[#b55e5e] bg-[#421d1d]/30 px-2 py-0.5 rounded border border-[#5c2727]/50">Critical</span></div>
+                        <div class="text-xs text-[#8f8580] mt-1">Arera Colony, 20 Sep</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SCREEN 2: DOGS LIST -->
+        <div id="screen-dogs" class="screen px-4 py-4">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-xl font-bold">🐕 Dog Profiles (47)</h2>
+                <button onclick="switchScreen('home')" class="w-8 h-8 bg-[#262220] rounded-full flex items-center justify-center border border-[#332e2b] text-[#8f8580] cursor-pointer">✕</button>
+            </div>
+            
+            <div class="relative mb-4">
+                <span class="absolute left-3 top-1/2 -translate-y-1/2 text-[#8f8580]">🔍</span>
+                <input type="text" placeholder="Search dogs by name, location..." class="w-full bg-[#1a1714] border border-[#332e2b] rounded-xl py-2 pl-9 pr-3 text-sm focus:outline-none focus:border-[#5a82a6]">
+            </div>
+
+            <div class="flex gap-2 overflow-x-auto pb-2 mb-2 no-scrollbar">
+                <button class="px-3 py-1 bg-[#243747] text-[#6b94b8] border border-[#395773] rounded-full text-xs whitespace-nowrap">All</button>
+                <button class="px-3 py-1 bg-[#262220] text-[#b5aea8] border border-[#332e2b] rounded-full text-xs whitespace-nowrap">Critical</button>
+                <button class="px-3 py-1 bg-[#262220] text-[#b5aea8] border border-[#332e2b] rounded-full text-xs whitespace-nowrap">Treatment</button>
+                <button class="px-3 py-1 bg-[#262220] text-[#b5aea8] border border-[#332e2b] rounded-full text-xs whitespace-nowrap">Recovered</button>
+            </div>
+
+            <div class="flex flex-col gap-3">
+                <div onclick="showDetail('Bruno', '🐕', 'amber')" class="bg-[#262220] rounded-xl p-3 border border-[#332e2b] cursor-pointer">
+                    <div class="flex justify-between items-start mb-2">
+                        <div>
+                            <div class="font-bold text-lg">Bruno</div>
+                            <div class="text-xs text-[#8f8580]">Karond • 15 Sep</div>
+                        </div>
+                        <span class="text-xs font-medium text-[#c9a355] bg-[#4d3e1b]/30 px-2 py-1 rounded border border-[#6b5626]/50">Under Treatment</span>
+                    </div>
+                    <div class="text-sm text-[#b5aea8] mb-3 bg-[#1a1714]/50 p-2 rounded-lg">Severe maggot wound on back leg. Receiving daily dressing and antibiotics.</div>
+                    <div class="flex gap-2">
+                        <div class="flex-1 bg-[#1a1714] rounded-lg h-16 flex items-center justify-center text-2xl text-[#332e2b] border border-[#332e2b] border-dashed">📷</div>
+                        <div class="flex-1 bg-[#1a1714] rounded-lg h-16 flex items-center justify-center text-2xl text-[#332e2b] border border-[#332e2b] border-dashed">📷</div>
+                    </div>
+                </div>
+
+                <div onclick="showDetail('Golu', '🐕', 'rose')" class="bg-[#262220] rounded-xl p-3 border border-[#332e2b] cursor-pointer">
+                    <div class="flex justify-between items-start mb-2">
+                        <div>
+                            <div class="font-bold text-lg">Golu</div>
+                            <div class="text-xs text-[#8f8580]">Arera Colony • 20 Sep</div>
+                        </div>
+                        <span class="text-xs font-medium text-[#b55e5e] bg-[#421d1d]/30 px-2 py-1 rounded border border-[#5c2727]/50">Critical</span>
+                    </div>
+                    <div class="text-sm text-[#b5aea8] mb-3 bg-[#1a1714]/50 p-2 rounded-lg">Hit by car, multiple fractures. Requires surgery.</div>
+                    <div class="flex gap-2">
+                        <div class="flex-1 bg-[#1a1714] rounded-lg h-16 flex items-center justify-center text-2xl text-[#332e2b] border border-[#332e2b] border-dashed">📷</div>
+                        <div class="flex-1 bg-[#1a1714] rounded-lg h-16 flex items-center justify-center text-2xl text-[#332e2b] border border-[#332e2b] border-dashed">📷</div>
+                    </div>
+                </div>
+                
+                <div class="bg-[#262220] rounded-xl p-3 border border-[#332e2b] cursor-pointer">
+                    <div class="flex justify-between items-start mb-2">
+                        <div>
+                            <div class="font-bold text-lg">Sheru</div>
+                            <div class="text-xs text-[#8f8580]">MP Nagar • 10 Sep</div>
+                        </div>
+                        <span class="text-xs font-medium text-[#c27a66] bg-[#3d221a]/30 px-2 py-1 rounded border border-[#543024]/50">Recovered</span>
+                    </div>
+                    <div class="text-sm text-[#b5aea8] mb-3 bg-[#1a1714]/50 p-2 rounded-lg">Mange treated successfully. Ready for release.</div>
+                    <div class="flex gap-2">
+                        <div class="flex-1 bg-[#1a1714] rounded-lg h-16 flex items-center justify-center text-2xl text-[#332e2b] border border-[#332e2b] border-dashed">📷</div>
+                        <div class="flex-1 bg-[#1a1714] rounded-lg h-16 flex items-center justify-center text-2xl text-[#332e2b] border border-[#332e2b] border-dashed">📷</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SCREEN 3: COWS LIST -->
+        <div id="screen-cows" class="screen px-4 py-4">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-xl font-bold">🐄 Cow Profiles (23)</h2>
+                <button onclick="switchScreen('home')" class="w-8 h-8 bg-[#262220] rounded-full flex items-center justify-center border border-[#332e2b] text-[#8f8580] cursor-pointer">✕</button>
+            </div>
+            
+            <div class="relative mb-4">
+                <span class="absolute left-3 top-1/2 -translate-y-1/2 text-[#8f8580]">🔍</span>
+                <input type="text" placeholder="Search cows by name, location..." class="w-full bg-[#1a1714] border border-[#332e2b] rounded-xl py-2 pl-9 pr-3 text-sm focus:outline-none focus:border-[#5a82a6]">
+            </div>
+
+            <div class="flex gap-2 overflow-x-auto pb-2 mb-2 no-scrollbar">
+                <button class="px-3 py-1 bg-[#243747] text-[#6b94b8] border border-[#395773] rounded-full text-xs whitespace-nowrap">All</button>
+                <button class="px-3 py-1 bg-[#262220] text-[#b5aea8] border border-[#332e2b] rounded-full text-xs whitespace-nowrap">Critical</button>
+                <button class="px-3 py-1 bg-[#262220] text-[#b5aea8] border border-[#332e2b] rounded-full text-xs whitespace-nowrap">Treatment</button>
+            </div>
+
+            <div class="flex flex-col gap-3">
+                <div onclick="showDetail('Nandi', '🐄', 'rose')" class="bg-[#262220] rounded-xl p-3 border border-[#332e2b] cursor-pointer">
+                    <div class="flex justify-between items-start mb-2">
+                        <div>
+                            <div class="font-bold text-lg">Nandi</div>
+                            <div class="text-xs text-[#8f8580]">Bairagarh • 18 Sep</div>
+                        </div>
+                        <span class="text-xs font-medium text-[#b55e5e] bg-[#421d1d]/30 px-2 py-1 rounded border border-[#5c2727]/50">Critical</span>
+                    </div>
+                    <div class="text-sm text-[#b5aea8] mb-3 bg-[#1a1714]/50 p-2 rounded-lg">Plastic ingestion and severe weakness. On IV fluids.</div>
+                    <div class="flex gap-2">
+                        <div class="flex-1 bg-[#1a1714] rounded-lg h-16 flex items-center justify-center text-2xl text-[#332e2b] border border-[#332e2b] border-dashed">📷</div>
+                        <div class="flex-1 bg-[#1a1714] rounded-lg h-16 flex items-center justify-center text-2xl text-[#332e2b] border border-[#332e2b] border-dashed">📷</div>
+                    </div>
+                </div>
+
+                <div class="bg-[#262220] rounded-xl p-3 border border-[#332e2b] cursor-pointer">
+                    <div class="flex justify-between items-start mb-2">
+                        <div>
+                            <div class="font-bold text-lg">Gauri</div>
+                            <div class="text-xs text-[#8f8580]">Awadhpuri • 12 Sep</div>
+                        </div>
+                        <span class="text-xs font-medium text-[#c9a355] bg-[#4d3e1b]/30 px-2 py-1 rounded border border-[#6b5626]/50">Under Treatment</span>
+                    </div>
+                    <div class="text-sm text-[#b5aea8] mb-3 bg-[#1a1714]/50 p-2 rounded-lg">Horn injury. Dressing being done every alternate day.</div>
+                    <div class="flex gap-2">
+                        <div class="flex-1 bg-[#1a1714] rounded-lg h-16 flex items-center justify-center text-2xl text-[#332e2b] border border-[#332e2b] border-dashed">📷</div>
+                        <div class="flex-1 bg-[#1a1714] rounded-lg h-16 flex items-center justify-center text-2xl text-[#332e2b] border border-[#332e2b] border-dashed">📷</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SCREEN 4: ADD NEW RESCUE -->
+        <div id="screen-add" class="screen px-4 py-4">
+            <div class="flex justify-between items-center mb-6">
+                <div>
+                    <h2 class="text-xl font-bold flex items-center gap-2">➕ नया जानवर दर्ज करें</h2>
+                    <div class="text-xs text-[#8f8580]">(New Rescue)</div>
+                </div>
+                <button onclick="switchScreen('home')" class="w-8 h-8 bg-[#262220] rounded-full flex items-center justify-center border border-[#332e2b] text-[#8f8580] cursor-pointer">✕</button>
+            </div>
+
+            <div class="flex gap-2 mb-6">
+                <button type="button" class="flex-1 bg-[#243747] border-2 border-[#5a82a6] rounded-xl py-3 flex flex-col items-center gap-1 transition-colors">
+                    <span class="text-2xl">🐕</span>
+                    <span class="font-bold text-sm text-[#6b94b8]">Dog (कुत्ता)</span>
+                </button>
+                <button type="button" class="flex-1 bg-[#262220] border-2 border-transparent rounded-xl py-3 flex flex-col items-center gap-1 transition-colors opacity-60">
+                    <span class="text-2xl">🐄</span>
+                    <span class="font-bold text-sm text-[#8f8580]">Cow (गाय)</span>
+                </button>
+            </div>
+
+            <form class="flex flex-col gap-4" onsubmit="event.preventDefault(); switchScreen('home'); alert('New rescue entry saved successfully!');">
+                <div>
+                    <label class="block text-xs text-[#8f8580] mb-1">Name / ID</label>
+                    <input type="text" class="w-full bg-[#1a1714] border border-[#332e2b] rounded-xl p-3 text-sm focus:outline-none focus:border-[#5a82a6]" placeholder="e.g. Kaalu">
+                </div>
+                
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-xs text-[#8f8580] mb-1">Date of Rescue</label>
+                        <input type="date" class="w-full bg-[#1a1714] border border-[#332e2b] rounded-xl p-3 text-sm focus:outline-none focus:border-[#5a82a6] [color-scheme:dark]">
+                    </div>
+                    <div>
+                        <label class="block text-xs text-[#8f8580] mb-1">Condition</label>
+                        <select class="w-full bg-[#1a1714] border border-[#332e2b] rounded-xl p-3 text-sm focus:outline-none focus:border-[#5a82a6] appearance-none">
+                            <option>Critical</option>
+                            <option>Severe</option>
+                            <option>Moderate</option>
+                            <option>Mild</option>
+                            <option>Healthy</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs text-[#8f8580] mb-1">Location of Rescue</label>
+                    <input type="text" class="w-full bg-[#1a1714] border border-[#332e2b] rounded-xl p-3 text-sm focus:outline-none focus:border-[#5a82a6]" placeholder="e.g. Karond, Bhopal">
+                </div>
+
+                <div>
+                    <label class="block text-xs text-[#8f8580] mb-1">Treatment Details</label>
+                    <textarea rows="2" class="w-full bg-[#1a1714] border border-[#332e2b] rounded-xl p-3 text-sm focus:outline-none focus:border-[#5a82a6] resize-none" placeholder="Describe injuries and treatment..."></textarea>
+                </div>
+
+                <div>
+                    <label class="block text-xs text-[#8f8580] mb-1">Estimated Recovery Time</label>
+                    <input type="text" class="w-full bg-[#1a1714] border border-[#332e2b] rounded-xl p-3 text-sm focus:outline-none focus:border-[#5a82a6]" placeholder="e.g. 21 days">
+                </div>
+
+                <div class="grid grid-cols-2 gap-3 mb-2">
+                    <button type="button" class="bg-[#1a1714] border border-[#332e2b] border-dashed rounded-xl p-4 flex flex-col items-center justify-center text-center gap-1 hover:bg-[#262220]">
+                        <span class="text-xl">📷</span>
+                        <span class="text-xs text-[#8f8580]">Before Photo</span>
+                    </button>
+                    <button type="button" class="bg-[#1a1714] border border-[#332e2b] border-dashed rounded-xl p-4 flex flex-col items-center justify-center text-center gap-1 hover:bg-[#262220]">
+                        <span class="text-xl">📷</span>
+                        <span class="text-xs text-[#8f8580]">After Photo (Opt.)</span>
+                    </button>
+                </div>
+
+                <button type="submit" class="w-full bg-[#8f5c48] hover:bg-[#a86b56] text-white rounded-xl py-4 font-bold text-sm transition-colors mt-2">
+                    जानवर प्रोफ़ाइल सेव करें (Save Profile) ✓
+                </button>
+            </form>
+        </div>
+
+        <!-- SCREEN 5: DETAIL VIEW -->
+        <div id="screen-detail" class="screen px-4 py-4 relative">
+            <div class="flex justify-between items-center mb-4">
+                <h2 id="detail-title" class="text-xl font-bold flex items-center gap-2">🐕 Bruno</h2>
+                <button onclick="switchScreen('home')" class="w-8 h-8 bg-[#262220] rounded-full flex items-center justify-center border border-[#332e2b] text-[#8f8580] cursor-pointer">✕</button>
+            </div>
+
+            <div class="bg-[#262220] rounded-2xl p-4 border border-[#332e2b] mb-4">
+                <div class="flex justify-between items-start mb-4">
+                    <div>
+                        <div class="text-xs text-[#8f8580] mb-1">ID: #JJV-0926-44</div>
+                        <div class="font-medium text-sm">Rescued: 15 Sep</div>
+                        <div class="font-medium text-sm text-[#b5aea8]">Location: Karond</div>
+                    </div>
+                    <span id="detail-badge" class="text-xs font-medium text-[#c9a355] bg-[#4d3e1b]/30 px-2 py-1 rounded border border-[#6b5626]/50">Under Treatment</span>
+                </div>
+
+                <div class="flex gap-2 mb-4">
+                    <div class="flex-1 bg-[#1a1714] rounded-xl aspect-square flex flex-col items-center justify-center border border-[#332e2b] relative overflow-hidden">
+                        <span class="text-3xl text-[#332e2b] mb-1">📷</span>
+                        <span class="text-[10px] text-[#5e5752] uppercase tracking-widest absolute bottom-2">Before</span>
+                    </div>
+                    <div class="flex-1 bg-[#1a1714] rounded-xl aspect-square flex flex-col items-center justify-center border border-[#332e2b] relative overflow-hidden">
+                        <span class="text-3xl text-[#332e2b] mb-1">📷</span>
+                        <span class="text-[10px] text-[#5e5752] uppercase tracking-widest absolute bottom-2">After</span>
+                    </div>
+                </div>
+
+                <div class="mb-4">
+                    <h3 class="text-xs uppercase tracking-wider text-[#8f8580] mb-2 font-semibold">Diagnosis & Treatment</h3>
+                    <div class="bg-[#1a1714] rounded-lg p-3 text-sm text-[#b5aea8] leading-relaxed">
+                        Severe maggot wound on back leg. Receiving daily dressing with Lorexane and Negasunt. Antibiotics (Amoxycillin) IM for 5 days.
+                    </div>
+                </div>
+
+                <div>
+                    <div class="flex justify-between text-xs mb-1">
+                        <span class="text-[#8f8580]">Recovery Progress</span>
+                        <span class="text-[#6b94b8]">40%</span>
+                    </div>
+                    <div class="w-full bg-[#1a1714] rounded-full h-2 border border-[#332e2b] overflow-hidden">
+                        <div class="bg-[#5a82a6] h-2 rounded-full" style="width: 40%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-[#262220] rounded-2xl p-4 border border-[#332e2b]">
+                <h3 class="text-xs uppercase tracking-wider text-[#8f8580] mb-3 font-semibold">Treatment Timeline</h3>
+                
+                <div class="relative pl-4 border-l border-[#332e2b] space-y-4">
+                    <div class="relative">
+                        <div class="absolute -left-[21px] top-1 w-2.5 h-2.5 rounded-full bg-[#5a82a6] ring-4 ring-[#262220]"></div>
+                        <div class="text-xs text-[#8f8580]">Today, 09:00 AM</div>
+                        <div class="text-sm font-medium mt-0.5">Wound cleaned and dressed</div>
+                        <div class="text-xs text-[#8f8580]">By: Ravi Bhai</div>
+                    </div>
+                    <div class="relative">
+                        <div class="absolute -left-[21px] top-1 w-2.5 h-2.5 rounded-full bg-[#4a4440] ring-4 ring-[#262220]"></div>
+                        <div class="text-xs text-[#8f8580]">Yesterday, 04:30 PM</div>
+                        <div class="text-sm font-medium mt-0.5">Antibiotic dose given</div>
+                    </div>
+                    <div class="relative">
+                        <div class="absolute -left-[21px] top-1 w-2.5 h-2.5 rounded-full bg-[#a86b56] ring-4 ring-[#262220]"></div>
+                        <div class="text-xs text-[#8f8580]">15 Sep</div>
+                        <div class="text-sm font-medium mt-0.5">Initial Rescue & First Aid</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-4 flex gap-2">
+                <button class="flex-1 bg-[#262220] border border-[#332e2b] rounded-xl py-3 text-sm font-semibold active:bg-[#332e2b]">Edit Profile</button>
+                <button class="flex-1 bg-[#8f5c48] border border-[#a86b56] rounded-xl py-3 text-sm font-semibold active:bg-[#754433]">Update Status</button>
+            </div>
+        </div>
+
+        <!-- Bottom Navigation Dock -->
+        <div class="absolute bottom-0 w-full bg-[#141110]/95 backdrop-blur-md border-t border-[#262220] px-4 py-2 flex justify-between items-center z-50">
+            <button onclick="switchScreen('home')" id="nav-home" class="nav-item flex flex-col items-center p-2 text-[#6b94b8] cursor-pointer">
+                <span class="text-xl mb-1">🏠</span>
+                <span class="text-[10px] font-medium">Home</span>
+            </button>
+            <button onclick="switchScreen('dogs')" id="nav-dogs" class="nav-item flex flex-col items-center p-2 text-[#8f8580] hover:text-[#b5aea8] cursor-pointer">
+                <span class="text-xl mb-1">🐕</span>
+                <span class="text-[10px] font-medium">Dogs</span>
+            </button>
+            <button onclick="switchScreen('add')" class="nav-item relative flex flex-col items-center p-2 -mt-6 cursor-pointer">
+                <div class="w-12 h-12 bg-gradient-to-r from-[#5a82a6] to-[#4a6c8a] rounded-full flex items-center justify-center shadow-lg shadow-[#243747]/50 text-white text-xl border-4 border-[#141110]">
+                    ➕
+                </div>
+            </button>
+            <button onclick="switchScreen('cows')" id="nav-cows" class="nav-item flex flex-col items-center p-2 text-[#8f8580] hover:text-[#b5aea8] cursor-pointer">
+                <span class="text-xl mb-1">🐄</span>
+                <span class="text-[10px] font-medium">Cows</span>
+            </button>
+            <button class="nav-item flex flex-col items-center p-2 text-[#8f8580] hover:text-[#b5aea8] cursor-pointer">
+                <span class="text-xl mb-1">👤</span>
+                <span class="text-[10px] font-medium">Profile</span>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        function switchScreen(screenId) {
+            // Hide all screens
+            document.querySelectorAll('.screen').forEach(el => el.classList.remove('active'));
+            // Show target screen
+            document.getElementById(`screen-${screenId}`).classList.add('active');
+
+            // Update bottom nav highlighting
+            const navItems = document.querySelectorAll('.nav-item');
+            navItems.forEach(el => {
+                if(el.id) {
+                    el.classList.remove('text-[#6b94b8]');
+                    el.classList.add('text-[#8f8580]');
+                }
+            });
+            
+            const activeNav = document.getElementById(`nav-${screenId}`);
+            if (activeNav) {
+                activeNav.classList.remove('text-[#8f8580]');
+                activeNav.classList.add('text-[#6b94b8]');
+            }
+        }
+
+        function showDetail(name, icon, statusColor) {
+            document.getElementById('detail-title').innerHTML = `${icon} ${name}`;
+            
+            const badge = document.getElementById('detail-badge');
+            // reset classes
+            badge.className = 'text-xs font-medium px-2 py-1 rounded border';
+            
+            let statusText = 'Unknown';
+            if (statusColor === 'amber') {
+                badge.classList.add('text-[#c9a355]', 'bg-[#4d3e1b]/30', 'border-[#6b5626]/50');
+                statusText = 'Under Treatment';
+            } else if (statusColor === 'rose') {
+                badge.classList.add('text-[#b55e5e]', 'bg-[#421d1d]/30', 'border-[#5c2727]/50');
+                statusText = 'Critical';
+            } else if (statusColor === 'emerald') {
+                badge.classList.add('text-[#c27a66]', 'bg-[#3d221a]/30', 'border-[#543024]/50');
+                statusText = 'Recovered';
+            }
+            
+            badge.innerText = statusText;
+            switchScreen('detail');
+        }
+    </script>
+</body>
+</html>

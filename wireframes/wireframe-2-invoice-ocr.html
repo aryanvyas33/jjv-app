@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wireframe 2: Jeev Jantu Vihar - Bhopal Bill OCR Verification Studio</title>
+  <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+  <style>
+    :root {
+      --background: #0f172a;
+      --card: #1e293b;
+      --border: #334155;
+      --foreground: #f8fafc;
+      --muted-foreground: #94a3b8;
+    }
+    body { background-color: var(--background); color: var(--foreground); }
+    .bbox-highlight {
+      outline: 2px dashed #0ea5e9;
+      background-color: rgba(14, 165, 233, 0.15);
+    }
+    .bbox-highlight:hover {
+      outline: 2px solid #38bdf8;
+      background-color: rgba(56, 189, 248, 0.35);
+    }
+  </style>
+</head>
+<body class="p-6 max-w-7xl mx-auto space-y-4">
+
+  <div class="flex items-center justify-between border-b border-[var(--border)] pb-3">
+    <div>
+      <span class="text-xs font-bold text-emerald-400 uppercase tracking-wider">Wireframe 2 • Jeev Jantu Vihar (Bhopal)</span>
+      <h1 class="text-xl font-bold">Bhopal Invoice Image Scanner & Split-Screen OCR Studio</h1>
+      <p class="text-xs text-[var(--muted-foreground)]">Extracting line items, GSTIN, batch/lot numbers, and medicine expiry dates into shelter inventory</p>
+    </div>
+    <div class="flex space-x-2">
+      <a href="index.html" class="px-3 py-1.5 rounded-lg bg-sky-600 text-white text-xs font-semibold">← Master Prototype</a>
+      <a href="wireframe-mobile-app.html" target="_blank" class="px-3 py-1.5 rounded-lg bg-emerald-600 text-white text-xs font-semibold">📱 Open Mobile App</a>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-4">
+    <!-- Invoice Left -->
+    <div class="lg:col-span-5 bg-[var(--card)] p-4 rounded-xl border border-[var(--border)] space-y-2">
+      <div class="flex justify-between text-xs text-[var(--muted-foreground)] pb-2 border-b border-[var(--border)]">
+        <span>Image: <code class="text-sky-300">bill_bhopal_vet_pharma_8841.jpg</code></span>
+        <span class="text-emerald-400">Gemini 2.5 OCR: 98%</span>
+      </div>
+      <div class="bg-slate-950 p-3 rounded-lg flex justify-center">
+        <div class="w-full bg-[#fffdfa] text-slate-900 p-4 rounded font-mono text-[10px] shadow-lg border border-slate-300">
+          <div class="bbox-highlight p-1 rounded mb-2">
+            <p class="font-bold text-xs">BHOPAL VET CARE & PHARMA AGENCIES</p>
+            <p class="text-[9px] text-slate-600">MP Nagar Zone-II, Bhopal (MP) • GSTIN: 23AABCV1294F1Z4</p>
+          </div>
+          <div class="bbox-highlight p-1 rounded mb-2 flex justify-between border-y border-dashed border-slate-300 py-1 text-[10px]">
+            <span>Invoice: <strong>BPL-2026-8841</strong></span>
+            <span>Date: <strong>18-Sep-2026</strong></span>
+          </div>
+          <div class="space-y-1 text-[10px]">
+            <div class="bbox-highlight p-1 rounded">
+              <div class="flex justify-between font-bold">
+                <span>Melonex Vet 100ml (10 btls)</span>
+                <span>₹2,400.00</span>
+              </div>
+              <div class="text-[8.5px] text-slate-600">Batch: MX-9021 • Exp: 10/2027</div>
+            </div>
+            <div class="bbox-highlight p-1 rounded">
+              <div class="flex justify-between font-bold">
+                <span>Nobivac Rabies (20 vials - 200 doses)</span>
+                <span>₹9,000.00</span>
+              </div>
+              <div class="text-[8.5px] text-slate-600">Batch: NR-819 • Exp: 12/2026 • Cold Chain 2-8°C</div>
+            </div>
+            <div class="bbox-highlight p-1 rounded">
+              <div class="flex justify-between font-bold">
+                <span>D-Mag Wound Maggot Spray (15 cans)</span>
+                <span>₹2,700.00</span>
+              </div>
+              <div class="text-[8.5px] text-slate-600">Batch: DM-112 • Exp: 05/2028</div>
+            </div>
+          </div>
+          <div class="bbox-highlight p-1 rounded mt-3 border-t border-slate-800 pt-1 font-bold flex justify-between text-xs">
+            <span>TOTAL (Incl. GST):</span>
+            <span>₹17,300.00</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Parsed Data Right -->
+    <div class="lg:col-span-7 bg-[var(--card)] p-4 rounded-xl border border-[var(--border)] space-y-4">
+      <div class="bg-[var(--background)] p-3 rounded-lg border border-[var(--border)] space-y-2">
+        <h3 class="text-xs font-bold uppercase tracking-wider text-sky-400">GST Header & Funding Match</h3>
+        <div class="grid grid-cols-3 gap-2 text-xs">
+          <div>
+            <label class="text-[10px] text-[var(--muted-foreground)]">Bhopal Vendor</label>
+            <input type="text" value="Bhopal Vet Care & Pharma" class="w-full bg-[var(--card)] p-1 rounded border border-[var(--border)]">
+          </div>
+          <div>
+            <label class="text-[10px] text-[var(--muted-foreground)]">GSTIN (MP 23)</label>
+            <input type="text" value="23AABCV1294F1Z4" class="w-full bg-[var(--card)] p-1 rounded border border-[var(--border)] font-mono text-emerald-400">
+          </div>
+          <div>
+            <label class="text-[10px] text-[var(--muted-foreground)]">Funding Match</label>
+            <select class="w-full bg-[var(--card)] p-1 rounded border border-[var(--border)] text-xs">
+              <option>BHEL Bhopal CSR Grant (₹1,50,000 pool)</option>
+              <option>Jeev Jantu Vihar General Operating</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="space-y-2 text-xs">
+        <h3 class="font-bold uppercase tracking-wider">Parsed Veterinary Consumables</h3>
+        <div class="p-3 bg-[var(--background)] rounded-lg border border-[var(--border)] space-y-1">
+          <div class="flex justify-between font-bold">
+            <span>Nobivac Rabies (10-Dose Multi-Vial)</span>
+            <span class="text-sky-400 font-bold">₹9,000.00</span>
+          </div>
+          <div class="text-[11px] text-[var(--muted-foreground)]">20 Vials (200 Doses) • Batch #NR-819 • Exp: Dec 2026 • Destination: Clinic Fridge #1</div>
+        </div>
+
+        <div class="p-3 bg-[var(--background)] rounded-lg border border-[var(--border)] space-y-1">
+          <div class="flex justify-between font-bold">
+            <span>Melonex Vet 100ml Injection (Intas)</span>
+            <span class="text-sky-400 font-bold">₹2,400.00</span>
+          </div>
+          <div class="text-[11px] text-[var(--muted-foreground)]">10 Bottles • Batch #MX-9021 • Exp: Oct 2027 • Destination: ICU Medicine Cabinet</div>
+        </div>
+      </div>
+
+      <div class="flex justify-end space-x-2 pt-3 border-t border-[var(--border)]">
+        <button class="px-3 py-1.5 rounded-lg border border-[var(--border)] text-xs">Discard</button>
+        <button class="px-4 py-1.5 rounded-lg bg-emerald-600 font-bold text-white text-xs">Confirm & Sync to Inventory (₹) ✓</button>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
